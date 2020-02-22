@@ -13,9 +13,11 @@
   </head>
   <body id='<%= yield(:page_id)%>'>
     <%= render 'layouts/header' %>
-    <div class='container'>
+    <div class='wrapper'>
+      <div class='container'>
       <%= render 'layouts/flash_messages' %>
       <%= yield %>
+      </div>
     </div>
   </body>
 </html>

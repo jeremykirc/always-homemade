@@ -44,16 +44,16 @@
 
 body {
   font-family: 'Raleway', sans-serif;
+  &#home {
+    @include background_img;
+    background-image: url('EggsOJBacon.JPG');
+  }
 }
 
-.center {
+.welcome {
   text-align: center;
-}
-
-.alert {
-  margin: 20px 20px 0px 20px;
-}
-
-#errors-list {
-  margin-left: -20px;
+  margin-top: 40px;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
