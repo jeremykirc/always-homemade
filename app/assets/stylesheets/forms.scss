@@ -1,0 +1,33 @@
+@import 'share.scss';
+
+input {
+  padding: 3px 5px;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+.signup-form, .edit-user-form, .login-form {
+  h2 {
+    margin: 40px 0px;
+  }
+  .panel {
+    background: $white-transparent;
+  }
+}
+
+.error-msg {
+  color: red;
+}
+
+.checkbox {
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}

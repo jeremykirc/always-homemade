@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # Set static page paths.
+  root to: 'static_pages#home'
+
+  # Set signup paths.
+  get '/signup',    to: 'users#new'
+
+  # Set session paths.
+  get '/login',     to: 'sessions#new'
+  post '/login',    to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+  # Set users paths.
+  resources :users
 end

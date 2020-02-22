@@ -1,0 +1,59 @@
+@import 'share.scss';
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+  }
+}
+
+.btn-primary[disabled]:hover {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-success {
+  background-color: $success;
+  border-color: $success;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    background-color: $success-dark;
+    border-color: $success-dark;
+  }
+}
+
+.btn-success[disabled]:hover {
+  background-color: $success;
+  border-color: $success;
+}
+
+.btn-danger {
+  background-color: $danger;
+  border-color: $danger;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    background-color: $danger-dark;
+    border-color: $danger-dark;
+  }
+}
+
+.btn-danger[disabled]:hover {
+  background-color: $success;
+  border-color: $success;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.center {
+  text-align: center;
+}
+
+.alert {
+  margin: 20px 20px 0px 20px;
+}
+
+#errors-list {
+  margin-left: -20px;
+}
