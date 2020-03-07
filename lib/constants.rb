@@ -1,4 +1,4 @@
 module Constants
   # Define a name for the application.
-  APP = 'Always Homemade'
+  APP = 'React App'
 end

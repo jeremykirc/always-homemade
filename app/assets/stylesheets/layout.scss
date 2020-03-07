@@ -1,4 +1,6 @@
-@import 'share.scss';
+@import 'colors.scss';
+@import 'fonts.scss';
+@import 'mixins.scss';
 
 .btn-primary {
   background-color: $primary;
@@ -42,11 +44,18 @@
   border-color: $success;
 }
 
+* {
+  font-family: 'Hind';
+}
+
+.container {
+  max-width: 98% !important;
+}
+
 body {
-  font-family: 'Raleway', sans-serif;
   &#home {
     @include background_img;
-    background-image: url('EggsOJBacon.JPG');
+    background-color: $success;
   }
 }
 
@@ -56,4 +65,48 @@ body {
   color: $white;
   text-transform: uppercase;
   letter-spacing: 3px;
+}
+
+body {
+  .navbar {
+    background-color: $white;
+    .navbar-toggler {
+      padding: 2px 6px;
+    }
+    .navbar-nav {
+      font-size: 14px;
+      font-weight: 600;
+      .nav-link {
+        text-transform: uppercase;
+      }
+      .expand {
+        font-size: 14px;
+        position: relative;
+        top: 2px;
+      }
+      .dropdown-menu {
+        padding: 0px;
+	margin-top: 8px;
+        border: none;
+	border-radius: 0px;
+	background-color: $primary;
+        a.dropdown-item {
+          padding: 8px 15px;
+          font-size: 13px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          color: $white !important;
+          &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+            background-color: $primary-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  button.close {
+    outline: none !important;
+  }
 }
