@@ -8,19 +8,14 @@ class ImageUpload extends React.Component {
     };
   }
 
-  myTheme = {
-    // Theme object to extends default dark theme.
+  editorTheme = {
   };
 
   render() {
     return(
       <ImageEditor
 	includeUI={{
-	  loadImage: {
-	    path: 'img/sampleImage.jpg',
-	    name: 'SampleImage'
-	  },
-	  theme: this.myTheme,
+	  theme: this.editorTheme,
 	  menu: ['crop', 'filter'],
 	  initMenu: 'crop',
 	  uiSize: {
@@ -35,7 +30,6 @@ class ImageUpload extends React.Component {
 	  cornerSize: 20,
 	  rotatingPointOffset: 70
 	}}
-	usageStatistics={true}
       />
     )
   }
