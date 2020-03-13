@@ -1,6 +1,6 @@
 // Vendor
 @import 'bootstrap/scss/bootstrap';
-@import 'tui-image-editor/dist/tui-image-editor.css';
+@import 'react-image-crop/lib/ReactCrop.scss';
 
 // Shared
 @import 'colors.scss';
@@ -10,6 +10,6 @@
 // Custom
 @import 'forms.scss';
 @import 'header.scss';
-@import 'image_editor.scss';
+@import 'image_cropper.scss';
 @import 'image_grid.scss';
 @import 'layout.scss';

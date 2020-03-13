@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageEditor from '@toast-ui/react-image-editor';
+import ReactCrop from 'react-image-crop';
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -8,29 +8,8 @@ class ImageUpload extends React.Component {
     };
   }
 
-  editorTheme = {
-  };
-
   render() {
     return(
-      <ImageEditor
-	includeUI={{
-	  theme: this.editorTheme,
-	  menu: ['crop', 'filter'],
-	  initMenu: 'crop',
-	  uiSize: {
-	    width: '1000px',
-	    height: '700px'
-	  },
-	  menuBarPosition: 'bottom'
-	}}
-	cssMaxHeight={500}
-	cssMaxWidth={700}
-	selectionStyle={{
-	  cornerSize: 20,
-	  rotatingPointOffset: 70
-	}}
-      />
     )
   }
 }
