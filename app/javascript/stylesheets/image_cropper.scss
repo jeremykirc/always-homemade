@@ -1,0 +1,18 @@
+.imageCropper {
+  form {
+    margin: 20px 0px;
+    input[type=file] {
+      width: auto;
+      display: inline-block;
+      margin-left: 15px;
+      margin-bottom: 0px;
+    }
+  }
+  .ReactCrop {
+    background-color: black;
+    img.ReactCrop__image {
+      min-height: 40vh;
+      max-height: 70vh;
+    }
+  }
+}

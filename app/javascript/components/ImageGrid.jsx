@@ -34,7 +34,7 @@ class ImageGrid extends React.Component {
 
     return (
       <Container className='image-grid'>
-	<Row>{imageBoxes}</Row>
+        <Row>{imageBoxes}</Row>
         <ImageModal
           show={this.state.showModal}
           imageInfo={this.state.imageInfo}

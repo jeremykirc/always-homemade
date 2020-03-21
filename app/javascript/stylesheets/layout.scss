@@ -2,8 +2,8 @@
   background-color: $primary;
   border-color: $primary;
   &:hover, &:focus, &:active, &:active:hover, &:active:focus {
-    background-color: $primary-dark;
-    border-color: $primary-dark;
+    background-color: $primary-dark !important;
+    border-color: $primary-dark !important;
   }
 }
 
@@ -16,8 +16,8 @@
   background-color: $success;
   border-color: $success;
   &:hover, &:focus, &:active, &:active:hover, &:active:focus {
-    background-color: $success-dark;
-    border-color: $success-dark;
+    background-color: $success-dark !important;
+    border-color: $success-dark !important;
   }
 }
 
@@ -30,8 +30,8 @@
   background-color: $danger;
   border-color: $danger;
   &:hover, &:focus, &:active, &:active:hover, &:active:focus {
-    background-color: $danger-dark;
-    border-color: $danger-dark;
+    background-color: $danger-dark !important;
+    border-color: $danger-dark !important;
   }
 }
 
