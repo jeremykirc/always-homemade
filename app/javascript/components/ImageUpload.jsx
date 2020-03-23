@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import ReactCrop from 'react-image-crop';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 
 import { getCroppedImg } from '../helpers/crop-image';
 

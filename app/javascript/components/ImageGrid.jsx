@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row } from 'react-bootstrap/Container';
+import React, { useState } from 'react';
+import { Container, Row } from 'react-bootstrap';
 
+import { ImageInfoPropType } from '../helpers/shared-prop-types';
 import ImageBox from './ImageBox';
 import ImageModal from './ImageModal';
 
@@ -9,17 +10,17 @@ const ImageGrid = ({ imageGridData }) => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [imageInfo, setImageInfo] = useState({});
 
-  const showModal = (imageInfo) => {
-    setImageInfo(imageInfo);
+  const showModal = (imageData) => {
+    setImageInfo(imageData);
     setIsModalShown(true);
   };
 
   const hideModal = () => setIsModalShown(false);
 
-  const imageBoxes = imageGridData.map((data, i) => (
+  const imageBoxes = imageGridData.map((imageData, i) => (
     <ImageBox
       key={i}
-      imageInfo={data}
+      imageInfo={imageData}
       handleImageBoxClick={showModal}
     />
   ));
@@ -37,11 +38,7 @@ const ImageGrid = ({ imageGridData }) => {
 };
 
 ImageGrid.propTypes = {
-  imageGridData: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  })).isRequired,
+  imageGridData: PropTypes.arrayOf(ImageInfoPropType).isRequired,
 };
 
 export default ImageGrid;

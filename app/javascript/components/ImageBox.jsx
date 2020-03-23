@@ -1,6 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Col } from 'react-bootstrap';
+
+import { ImageInfoPropType } from '../helpers/shared-prop-types';
 
 const ImageBox = ({ handleImageBoxClick, imageInfo }) => (
   <Col className='image-box-container' sm='6' md='4' lg='3'>
@@ -11,19 +13,15 @@ const ImageBox = ({ handleImageBoxClick, imageInfo }) => (
     >
     </div>
     <div className='image-info'>
-      <div className='image-title'>{imageInfo['title']}</div>
-      <div className='image-desc'>{imageInfo['description']}</div>
+      <div className='image-title'>{imageInfo.title}</div>
+      <div className='image-desc'>{imageInfo.description}</div>
     </div>
   </Col>
 );
 
 ImageBox.propTypes = {
   handleImageBoxClick: PropTypes.func.isRequired,
-  imageInfo: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  }).isRequired,
+  imageInfo: ImageInfoPropType.isRequired,
 };
 
 export default ImageBox;

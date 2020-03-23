@@ -1,19 +1,28 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import Modal from 'react-bootstrap/Modal';
+import { Modal } from 'react-bootstrap';
 
-const ImageModal = (props) => {
+import { ImageInfoPropType } from '../helpers/shared-prop-types';
+
+const ImageModal = ({ handleClose, imageInfo, show }) => {
   return (
     <Modal
-      show={props.show}
-      onHide={props.handleClose}
+      show={show}
+      onHide={handleClose}
       className='image-modal'
     >
       <Modal.Header closeButton>
-        <Modal.Title>{props.imageInfo['title']}</Modal.Title>
+        <Modal.Title>{imageInfo.title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{props.imageInfo['description']}</Modal.Body>
+      <Modal.Body>{imageInfo.description}</Modal.Body>
     </Modal>
   );
+};
+
+ImageModal.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  imageInfo: ImageInfoPropType,
+  show: PropTypes.bool.isRequired,
 };
 
 export default ImageModal;
