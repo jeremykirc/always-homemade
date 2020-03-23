@@ -14,6 +14,6 @@ const ImageModal = (props) => {
       <Modal.Body>{props.imageInfo['description']}</Modal.Body>
     </Modal>
   );
-}
+};
 
-export default ImageModal
+export default ImageModal;

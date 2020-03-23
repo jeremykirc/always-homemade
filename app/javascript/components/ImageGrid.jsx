@@ -1,48 +1,47 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row } from 'react-bootstrap/Container';
+
 import ImageBox from './ImageBox';
 import ImageModal from './ImageModal';
-import Row from 'react-bootstrap/Row';
 
-class ImageGrid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-      imageInfo: {}
-    };
-  }
+const ImageGrid = ({ imageGridData }) => {
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [imageInfo, setImageInfo] = useState({});
 
-  showModal = (imageInfo) => {
-    this.setState({ showModal: true, imageInfo: imageInfo });
-  }
+  const showModal = (imageInfo) => {
+    setImageInfo(imageInfo);
+    setIsModalShown(true);
+  };
 
-  hideModal = () => {
-    this.setState({ showModal: false });
-  }
+  const hideModal = () => setIsModalShown(false);
 
-  render() {
-    var imageBoxes = this.props.imageGridData.map((imageInfo, i) => {
-      return (
-        <ImageBox
-          key={i}
-          imageInfo={imageInfo}
-          handleImageBoxClick={this.showModal}
-        />
-      )
-    });
+  const imageBoxes = imageGridData.map((data, i) => (
+    <ImageBox
+      key={i}
+      imageInfo={data}
+      handleImageBoxClick={showModal}
+    />
+  ));
 
-    return (
-      <Container className='image-grid'>
-        <Row>{imageBoxes}</Row>
-        <ImageModal
-          show={this.state.showModal}
-          imageInfo={this.state.imageInfo}
-          handleClose={this.hideModal}
-        />
-      </Container>
-    )
-  }
-}
+  return (
+    <Container className='image-grid'>
+      <Row>{imageBoxes}</Row>
+      <ImageModal
+        show={isModalShown}
+        imageInfo={imageInfo}
+        handleClose={hideModal}
+      />
+    </Container>
+  );
+};
 
-export default ImageGrid
+ImageGrid.propTypes = {
+  imageGridData: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  })).isRequired,
+};
+
+export default ImageGrid;
