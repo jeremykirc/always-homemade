@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: bundle install
+          command: gem install bundler -v 2.0.2 && bundle install
       - run:
           name: Setup DB
           command: bundle exec rake db:create && bundle exec rake db:migrate
