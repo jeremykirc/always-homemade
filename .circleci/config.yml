@@ -13,11 +13,21 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: gem install bundler -v 2.0.2 && bundle install
+          command: |
+            gem install bundler -v 2.0.2
+            bundle install
+            yarn install
       - run:
           name: Setup DB
-          command: bundle exec rake db:create && bundle exec rake db:migrate
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+            bundle exec rake db:fixtures:load
       - run:
-          name: Run tests
-          command: bundle exec rails test
+          name: Run Rails tests
+          command: |
+            bundle exec rails test
+      - run:
+          name: Run frontend tests
+          command: yarn test
 
