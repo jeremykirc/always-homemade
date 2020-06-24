@@ -1,6 +1,12 @@
 {
   "name": "always_homemade",
+  "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .jsx app/javascript/components/** app/javascript/helpers/**",
+    "format": "yarn lint --fix",
+    "test": "jest app/javascript/tests"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.8.3",
     "@rails/actioncable": "^6.0.0",
@@ -19,8 +25,13 @@
     "react_ujs": "^2.6.1",
     "turbolinks": "^5.2.0"
   },
-  "version": "0.1.0",
   "devDependencies": {
+    "canvas": "^2.6.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "jest": "^25.1.0",
+    "jest-canvas-mock": "^2.2.0",
     "webpack-dev-server": "^3.10.3"
   }
 }

@@ -1,23 +1,27 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import Col from 'react-bootstrap/Col';
+import { Col } from 'react-bootstrap';
 
-class ImageBox extends React.Component {
-  render() {
-    return (
-      <Col className='image-box-container' sm='6' md='4' lg='3'>
-        <div
-          style={{ backgroundImage: `url(${this.props.imageInfo['url']})` }}
-          className='image-box'
-          onClick={() => this.props.handleImageBoxClick(this.props.imageInfo)}
-        >
-        </div>
-        <div className='image-info'>
-          <div className='image-title'>{this.props.imageInfo['title']}</div>
-          <div className='image-desc'>{this.props.imageInfo['description']}</div>
-        </div>
-      </Col>
-    )
-  }
-}
+import { ImageInfoPropType } from '../helpers/shared-prop-types';
 
-export default ImageBox
+const ImageBox = ({ handleImageBoxClick, imageInfo }) => (
+  <Col className='image-box-container' sm='6' md='4' lg='3'>
+    <div
+      style={{ backgroundImage: `url(${imageInfo['url']})` }}
+      className='image-box'
+      onClick={() => handleImageBoxClick(imageInfo)}
+    >
+    </div>
+    <div className='image-info'>
+      <div className='image-title'>{imageInfo.title}</div>
+      <div className='image-desc'>{imageInfo.description}</div>
+    </div>
+  </Col>
+);
+
+ImageBox.propTypes = {
+  handleImageBoxClick: PropTypes.func.isRequired,
+  imageInfo: ImageInfoPropType.isRequired,
+};
+
+export default ImageBox;

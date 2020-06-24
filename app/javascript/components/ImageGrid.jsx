@@ -1,48 +1,44 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Container, Row } from 'react-bootstrap';
+
+import { ImageInfoPropType } from '../helpers/shared-prop-types';
 import ImageBox from './ImageBox';
 import ImageModal from './ImageModal';
-import Row from 'react-bootstrap/Row';
 
-class ImageGrid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-      imageInfo: {}
-    };
-  }
+const ImageGrid = ({ imageGridData }) => {
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [imageInfo, setImageInfo] = useState({});
 
-  showModal = (imageInfo) => {
-    this.setState({ showModal: true, imageInfo: imageInfo });
-  }
+  const showModal = (imageData) => {
+    setImageInfo(imageData);
+    setIsModalShown(true);
+  };
 
-  hideModal = () => {
-    this.setState({ showModal: false });
-  }
+  const hideModal = () => setIsModalShown(false);
 
-  render() {
-    var imageBoxes = this.props.imageGridData.map((imageInfo, i) => {
-      return (
-        <ImageBox
-          key={i}
-          imageInfo={imageInfo}
-          handleImageBoxClick={this.showModal}
-        />
-      )
-    });
+  const imageBoxes = imageGridData.map((imageData, i) => (
+    <ImageBox
+      key={i}
+      imageInfo={imageData}
+      handleImageBoxClick={showModal}
+    />
+  ));
 
-    return (
-      <Container className='image-grid'>
-        <Row>{imageBoxes}</Row>
-        <ImageModal
-          show={this.state.showModal}
-          imageInfo={this.state.imageInfo}
-          handleClose={this.hideModal}
-        />
-      </Container>
-    )
-  }
-}
+  return (
+    <Container className='image-grid'>
+      <Row>{imageBoxes}</Row>
+      <ImageModal
+        show={isModalShown}
+        imageInfo={imageInfo}
+        handleClose={hideModal}
+      />
+    </Container>
+  );
+};
 
-export default ImageGrid
+ImageGrid.propTypes = {
+  imageGridData: PropTypes.arrayOf(ImageInfoPropType).isRequired,
+};
+
+export default ImageGrid;
