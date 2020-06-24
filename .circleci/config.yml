@@ -3,7 +3,7 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 jobs:
-  build:
+  build_and_test:
     docker:
       - image: circleci/ruby:2.6.1-stretch-node
         environment:
@@ -30,4 +30,8 @@ jobs:
       - run:
           name: Run frontend tests
           command: yarn test
-
+workflows:
+  version: 2.1
+  build_and_test:
+    jobs:
+      - build_and_test
