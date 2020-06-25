@@ -22,7 +22,7 @@ const Header = () => (
               Dropdown
             </a>
             <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-              <NavLink to='/' className='dropdown-item'>Home</NavLink>
+              <NavLink to='/' exact className='dropdown-item'>Home</NavLink>
               <NavLink to='/images/new' className='dropdown-item'>Upload Image</NavLink>
             </div>
           </li>
