@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "lint": "eslint app/javascript --ext .jsx",
+    "lint": "eslint --ext .js app/webpack/helpers app/webpack/components",
     "format": "yarn lint --fix",
-    "test": "jest app/javascript/tests"
+    "test": "jest app/webpack/tests"
   },
   "dependencies": {
     "@babel/preset-react": "^7.8.3",
@@ -13,15 +13,18 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "axios": "^0.19.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
+    "rails-erb-loader": "^5.5.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.12.0",
     "react-image-crop": "^8.5.0",
+    "react-router-dom": "^5.2.0",
     "react_ujs": "^2.6.1",
     "turbolinks": "^5.2.0"
   },

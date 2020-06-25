@@ -1,0 +1,109 @@
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    background-color: $primary-dark !important;
+    border-color: $primary-dark !important;
+  }
+}
+
+.btn-primary[disabled]:hover {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-success {
+  background-color: $success;
+  border-color: $success;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    background-color: $success-dark !important;
+    border-color: $success-dark !important;
+  }
+}
+
+.btn-success[disabled]:hover {
+  background-color: $success;
+  border-color: $success;
+}
+
+.btn-danger {
+  background-color: $danger;
+  border-color: $danger;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    background-color: $danger-dark !important;
+    border-color: $danger-dark !important;
+  }
+}
+
+.btn-danger[disabled]:hover {
+  background-color: $success;
+  border-color: $success;
+}
+
+* {
+  font-family: 'Hind';
+}
+
+.container {
+  max-width: 98% !important;
+  padding: 0px 15px !important;
+}
+
+body {
+  &#home {
+    @include background_img;
+    background-color: $success;
+  }
+}
+
+.welcome {
+  text-align: center;
+  margin-top: 40px;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+body {
+  .navbar {
+    background-color: $white;
+    .navbar-toggler {
+      padding: 2px 6px;
+    }
+    .navbar-nav {
+      font-size: 14px;
+      font-weight: 600;
+      .nav-link {
+        text-transform: uppercase;
+      }
+      .expand {
+        font-size: 14px;
+        position: relative;
+        top: 2px;
+      }
+      .dropdown-menu {
+        padding: 0px;
+	margin-top: 8px;
+        border: none;
+	border-radius: 0px;
+	background-color: $primary;
+        a.dropdown-item {
+          padding: 8px 15px;
+          font-size: 13px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          color: $white !important;
+          &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+            background-color: $primary-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  button.close {
+    outline: none !important;
+  }
+}
