@@ -12,11 +12,6 @@
     <%= render 'layouts/shim' %>
   </head>
   <body id='<%= yield(:page_id)%>'>
-    <div class='wrapper'>
-      <div class='container'>
-        <%= render 'layouts/flash_messages' %>
-        <%= yield %>
-      </div>
-    </div>
+    <%= yield %>
   </body>
 </html>

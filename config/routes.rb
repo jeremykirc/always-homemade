@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   # Set paths for images.
-  resources :images, only: %i[new]
   post '/upload', to: 'images#upload'
 
   # Set paths for the API.
