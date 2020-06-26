@@ -22,8 +22,11 @@
       text-transform: uppercase;
       margin: 25px 8px 0px;
       padding: 0px 0px 14px;
-      &:hover, &:focus, &:active, &:active:hover, &:active:focus, &.active {
-        outline: none !important;
+      outline: none !important;
+      &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+        font-weight: bold;
+      }
+      &.active {
         font-weight: bold;
         border-bottom: 4px solid $primary;
       }

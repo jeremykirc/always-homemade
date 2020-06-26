@@ -1,16 +1,34 @@
 
 module Api
   module V1
-    class ImagesController < ParentController
-      # GET /images/test_grid_data
-      # Return test image grid data.
-      def test_grid_data
-        render json: test_image_grid_data
+    class RecipesController < ParentController
+
+      # POST /recipes
+      # Create a recipe.
+      def create
+        recipe = Recipe.new(
+          title: params[:title],
+          description: params[:description],
+        )
+        recipe.image.attach(params[:image])
+        recipe.save!
+      end
+
+      # GET /recipes
+      # Return a list of recipes.
+      def index
+        render json: recipes
       end
 
       private
 
-      def test_image_grid_data
+      def recipes
+        Recipe.all.map do |recipe|
+          recipe.as_json.merge({ image_url: recipe.image_url })
+        end
+      end
+
+      def test_recipe_grid_data
         [
           {
             title: 'Egg on Waffle',

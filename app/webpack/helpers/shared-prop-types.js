@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-export const ImageInfoPropType = PropTypes.shape({
+export const RecipePropType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
 });

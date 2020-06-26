@@ -7,29 +7,29 @@ import ImageModal from './ImageModal';
 
 const ImageGrid = () => {
   const [isModalShown, setIsModalShown] = useState(false);
-  const [imageInfo, setImageInfo] = useState({ title: '', description: '', url: '' });
+  const [recipe, setRecipe] = useState({ title: '', description: '', image_url: '' });
   const [imageBoxes, setImageBoxes] = useState();
 
   useEffect(() => {
-    axios.get('/api/v1/images/test_grid_data')
+    axios.get('/api/v1/recipes')
     .then(response => {
       setImageBoxes(generateImageBoxes(response.data));
     })
     .catch(error => console.error(error));
   }, []);
 
-  const showModal = (imageData) => {
-    setImageInfo(imageData);
+  const showModal = (recipe) => {
+    setRecipe(recipe);
     setIsModalShown(true);
   };
 
   const hideModal = () => setIsModalShown(false);
 
-  const generateImageBoxes = (imageGridData) => {
-    return imageGridData.map((imageData, i) => (
+  const generateImageBoxes = (recipes) => {
+    return recipes.map((recipe, i) => (
       <ImageBox
         key={i}
-        imageInfo={imageData}
+        recipe={recipe}
         handleImageBoxClick={showModal}
       />
     ));
@@ -40,7 +40,7 @@ const ImageGrid = () => {
       <Row>{imageBoxes}</Row>
       <ImageModal
         show={isModalShown}
-        imageInfo={imageInfo}
+        recipe={recipe}
         handleClose={hideModal}
       />
     </Container>

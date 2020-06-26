@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # Forward all non-Ajax/non-API requests with HTML Mime type to index page.
   get '*page', to: 'static_pages#index', constraints: ->(req) do
-    !req.xhr? && req.format.html? && req.path.exclude?('/api/')
+    req.format.html? &&
+      req.path.exclude?('/api/') &&
+      req.path.exclude?('/rails/active_storage')
   end
 
   # Set paths for signups.
@@ -21,7 +23,8 @@ Rails.application.routes.draw do
   # Set paths for the API.
   namespace :api do
     namespace :v1 do
-      get '/images/test_grid_data', to: 'images#test_grid_data'
+      get  '/recipes', to: 'recipes#index'
+      post '/recipes', to: 'recipes#create'
     end
   end
 end

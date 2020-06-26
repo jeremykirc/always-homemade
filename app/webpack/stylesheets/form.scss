@@ -1,0 +1,86 @@
+.signup-form, .edit-user-form, .login-form {
+  h2 {
+    margin: 40px 0px;
+  }
+  .panel {
+    background: $white-transparent;
+  }
+}
+
+input, textarea, select {
+  margin-bottom: 20px;
+  &.form-control {
+    height: 35px;
+    font-size: 16px;
+    border: 2px solid $gray-light;
+    background-color: $gray-extra-light;
+    color: $gray;
+    border-radius: 4px;
+    padding: 0px 16px;
+    box-shadow: none;
+    &:hover {
+      border-color: $gray;
+      background-color: $white;
+    }
+    &:focus, &:active, &:active:hover, &:active:focus {
+      outline: none !important;
+      border-color: $gray !important;
+      background-color: $white;
+      color: $ink;
+      box-shadow: 0 1px 4px 0 $shadow;
+    }
+  }
+  &.disabled, &[disabled='disabled'], &[readonly='readonly'] {
+    border: none !important;
+    box-shadow: none !important;
+    padding-left: 0px;
+    cursor: default;
+  }
+  &.filled {
+    background-color: $white !important;
+    color: $ink !important;
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 60px;
+  max-height: 500px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $gray;
+  margin-bottom: 5px;
+  width: 100%;
+  span.optional-label {
+    font-size: 12px;
+    font-style: italic;
+    text-transform: capitalize;
+    color: $gray;
+  }
+}
+
+select {
+  width: auto;
+}
+
+.parsley-errors-list {
+  li {
+    color: $danger;
+    margin: -10px 0px 20px;
+    line-height: 1.25;
+  }
+}
+
+#error-explanation ul {
+  padding-left: 20px;
+  li {
+    color: $danger;
+  }
+}
