@@ -9,6 +9,8 @@
 
 input, textarea, select {
   margin-bottom: 20px;
+  margin-top: 5px;
+  display: block;
   &.form-control {
     height: 35px;
     font-size: 16px;
@@ -16,7 +18,7 @@ input, textarea, select {
     background-color: $gray-extra-light;
     color: $gray;
     border-radius: 4px;
-    padding: 0px 16px;
+    padding: 0px 8px;
     box-shadow: none;
     &:hover {
       border-color: $gray;
@@ -44,6 +46,7 @@ input, textarea, select {
 
 textarea.form-control {
   resize: vertical;
+  height: auto;
   min-height: 60px;
   max-height: 500px;
   padding-top: 5px;
@@ -56,7 +59,6 @@ label {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: $gray;
-  margin-bottom: 5px;
   width: 100%;
   span.optional-label {
     font-size: 12px;
@@ -82,5 +84,16 @@ select {
   padding-left: 20px;
   li {
     color: $danger;
+  }
+}
+
+.add-btn {
+  font-size: 20px;
+  color: $gray;
+  margin-bottom: 20px;
+  outline: none !important;
+  &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+    cursor: pointer;
+    color: $gray-dark;
   }
 }

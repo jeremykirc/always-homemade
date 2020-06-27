@@ -10,8 +10,11 @@ module Api
           title: params[:title],
           description: params[:description],
         )
-        recipe.image.attach(params[:image])
+        recipe.image.attach(params[:image]) if params[:image].present?
         recipe.save!
+        render json: '', status: :ok
+      rescue ActiveRecord::RecordInvalid => e
+        render json: e.message, status: :internal_server_error
       end
 
       # GET /recipes

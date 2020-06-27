@@ -4,12 +4,12 @@ import { Col } from 'react-bootstrap';
 
 import { RecipePropType } from '../helpers/shared-prop-types';
 
-const ImageBox = ({ handleImageBoxClick, recipe }) => (
+const RecipeBox = ({ handleRecipeBoxClick, recipe }) => (
   <Col className='image-box-container' sm='6' md='4' lg='3'>
     <div
       style={{ backgroundImage: `url(${recipe['image_url']})` }}
       className='image-box'
-      onClick={() => handleImageBoxClick(recipe)}
+      onClick={() => handleRecipeBoxClick(recipe)}
     >
     </div>
     <div className='image-info'>
@@ -19,9 +19,9 @@ const ImageBox = ({ handleImageBoxClick, recipe }) => (
   </Col>
 );
 
-ImageBox.propTypes = {
-  handleImageBoxClick: PropTypes.func.isRequired,
+RecipeBox.propTypes = {
+  handleRecipeBoxClick: PropTypes.func.isRequired,
   recipe: RecipePropType.isRequired,
 };
 
-export default ImageBox;
+export default RecipeBox;

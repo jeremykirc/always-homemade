@@ -1,6 +1,9 @@
 // Vendor
 @import 'bootstrap/scss/bootstrap';
 @import 'react-image-crop/dist/ReactCrop.css';
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
 
 // Shared
 @import 'color.scss';

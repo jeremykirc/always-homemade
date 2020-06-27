@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap';
 
 import { RecipePropType } from '../helpers/shared-prop-types';
 
-const ImageModal = ({ handleClose, recipe, show }) => {
+const RecipeModal = ({ handleClose, recipe, show }) => {
   return (
     <Modal
       show={show}
@@ -19,10 +19,10 @@ const ImageModal = ({ handleClose, recipe, show }) => {
   );
 };
 
-ImageModal.propTypes = {
+RecipeModal.propTypes = {
   handleClose: PropTypes.func.isRequired,
   recipe: RecipePropType,
   show: PropTypes.bool.isRequired,
 };
 
-export default ImageModal;
+export default RecipeModal;

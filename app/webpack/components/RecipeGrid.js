@@ -2,18 +2,18 @@ import axios from 'axios';
 import React, { useEffect,useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 
-import ImageBox from './ImageBox';
-import ImageModal from './ImageModal';
+import RecipeBox from './RecipeBox';
+import RecipeModal from './RecipeModal';
 
-const ImageGrid = () => {
+const RecipeGrid = () => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [recipe, setRecipe] = useState({ title: '', description: '', image_url: '' });
-  const [imageBoxes, setImageBoxes] = useState();
+  const [RecipeBoxes, setRecipeBoxes] = useState();
 
   useEffect(() => {
     axios.get('/api/v1/recipes')
     .then(response => {
-      setImageBoxes(generateImageBoxes(response.data));
+      setRecipeBoxes(generateRecipeBoxes(response.data));
     })
     .catch(error => console.error(error));
   }, []);
@@ -25,20 +25,20 @@ const ImageGrid = () => {
 
   const hideModal = () => setIsModalShown(false);
 
-  const generateImageBoxes = (recipes) => {
+  const generateRecipeBoxes = (recipes) => {
     return recipes.map((recipe, i) => (
-      <ImageBox
+      <RecipeBox
         key={i}
         recipe={recipe}
-        handleImageBoxClick={showModal}
+        handleRecipeBoxClick={showModal}
       />
     ));
   };
 
   return (
     <Container className='image-grid'>
-      <Row>{imageBoxes}</Row>
-      <ImageModal
+      <Row>{RecipeBoxes}</Row>
+      <RecipeModal
         show={isModalShown}
         recipe={recipe}
         handleClose={hideModal}
@@ -47,4 +47,4 @@ const ImageGrid = () => {
   );
 };
 
-export default ImageGrid;
+export default RecipeGrid;
