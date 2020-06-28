@@ -43,6 +43,15 @@
         font-size: 14px;
         color: $gray;
       }
+      .review-stars {
+        float: left;
+        i {
+          color: gold;
+        }
+        .review-count {
+          padding-left: 5px;
+        }
+      }
     }
   }
   @media (max-width: 991px) {

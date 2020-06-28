@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 
+import ReviewStars from './ReviewStars';
 import { RecipePropType } from '../helpers/shared-prop-types';
 
 const RecipeBox = ({ handleRecipeBoxClick, recipe }) => {
@@ -25,6 +26,7 @@ const RecipeBox = ({ handleRecipeBoxClick, recipe }) => {
         <div className='recipe-title'>{recipe.title}</div>
         <div className='recipe-desc'>{recipe.description}</div>
         <div className='recipe-author'>{recipe.author}</div>
+        <ReviewStars starCount='3.5' />
       </div>
     </Col>
   );
