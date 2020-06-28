@@ -9,6 +9,7 @@ module Api
         recipe = Recipe.new(
           title: params[:title],
           description: params[:description],
+          user: current_user
         )
         recipe.image.attach(params[:image]) if params[:image].present?
         recipe.save!
@@ -26,8 +27,9 @@ module Api
       private
 
       def recipes
-        Recipe.all.map do |recipe|
-          recipe.as_json.merge({ image_url: recipe.image_url })
+        Recipe.all.includes(:user).map do |recipe|
+          recipe.as_json.merge({ author: recipe.author.full_name,
+                                 image_url: recipe.image_url })
         end
       end
 

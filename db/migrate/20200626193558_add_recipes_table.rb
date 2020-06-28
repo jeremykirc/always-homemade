@@ -4,6 +4,7 @@ class AddRecipesTable < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :description
       t.json :instructions
+      t.references :user, foreign_key: true, index: true
 
       t.timestamps
     end

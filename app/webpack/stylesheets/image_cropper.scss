@@ -6,4 +6,11 @@
       max-height: 70vh;
     }
   }
+  @media(min-width: 768px) {
+    margin-top: 25px;
+    padding-left: 20px !important;
+  }
+  @media(max-width: 767px) {
+    margin-bottom: 15px;
+  }
 }

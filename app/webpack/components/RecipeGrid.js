@@ -7,7 +7,12 @@ import RecipeModal from './RecipeModal';
 
 const RecipeGrid = () => {
   const [isModalShown, setIsModalShown] = useState(false);
-  const [recipe, setRecipe] = useState({ title: '', description: '', image_url: '' });
+  const [recipe, setRecipe] = useState({
+    title: '',
+    description: '',
+    author: '',
+    image_url: ''
+  });
   const [RecipeBoxes, setRecipeBoxes] = useState();
 
   useEffect(() => {
@@ -36,7 +41,7 @@ const RecipeGrid = () => {
   };
 
   return (
-    <Container className='image-grid'>
+    <Container className='recipe-grid'>
       <Row>{RecipeBoxes}</Row>
       <RecipeModal
         show={isModalShown}

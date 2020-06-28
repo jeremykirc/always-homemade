@@ -9,7 +9,7 @@ const RecipeModal = ({ handleClose, recipe, show }) => {
     <Modal
       show={show}
       onHide={handleClose}
-      className='image-modal'
+      className='recipe-modal'
     >
       <Modal.Header closeButton>
         <Modal.Title>{recipe.title}</Modal.Title>

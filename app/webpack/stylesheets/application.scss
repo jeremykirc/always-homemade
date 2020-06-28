@@ -4,6 +4,7 @@
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
 
 // Shared
 @import 'color.scss';
@@ -11,8 +12,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'mixin.scss';
 
 // Custom
+@import 'button.scss';
 @import 'form.scss';
 @import 'header.scss';
 @import 'image_cropper.scss';
-@import 'image_grid.scss';
 @import 'layout.scss';
+@import 'recipe_grid.scss';

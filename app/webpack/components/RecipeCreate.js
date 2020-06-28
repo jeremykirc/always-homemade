@@ -78,55 +78,42 @@ const RecipeCreate = () => {
   }
 
   return (
-    <div className='imageCropper'>
-      <Row>
-        <Col sm='4' md='5' lg='6'>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col>
-                <Form.Label>
-                  Title
-                  <Form.Control name='title' onChange={handleInputChange}></Form.Control>
-                </Form.Label>
-              </Col>
-            </Form.Row>
-            <Form.Row>
-              <Col>
-                <Form.Label>
-                  Description
-                  <Form.Control as='textarea' rows='5' name='description' onChange={handleInputChange}></Form.Control>
-                </Form.Label>
-              </Col>
-            </Form.Row>
-            <Form.Row>
-              <Col>
-                <Form.Label>
-                  Instructions
-                  <ol>{instructions}</ol>
-                  <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstruction}></i>
-                </Form.Label>
-              </Col>
-            </Form.Row>
-            <Form.Row>
-              <Col>
-                <Form.Label>
-                  Photo
-                  <input 
-                    type='file'
-                    accept='image/*'
-                    onChange={onSelectFile}
-                  />
-                </Form.Label>
-              </Col>
-            </Form.Row>
-            <Form.Row>
-              <Col>
-                <button className='btn btn-primary save-btn'>Save</button>
-              </Col>
-            </Form.Row>
-          </Form>
+    <Form onSubmit={handleFormSubmit}>
+      <Form.Row>
+        <Col xs='12' md='5' lg='6'>
+          <Form.Row>
+            <Col xs='12'>
+              <Form.Label>
+                Title
+                <Form.Control name='title' onChange={handleInputChange}></Form.Control>
+              </Form.Label>
+            </Col>
+            <Col xs='12'>
+              <Form.Label>
+                Description
+                <Form.Control as='textarea' rows='5' name='description' onChange={handleInputChange}></Form.Control>
+              </Form.Label>
+            </Col>
+            <Col xs='12'>
+              <Form.Label>
+                Instructions
+                <ol>{instructions}</ol>
+                <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstruction}></i>
+              </Form.Label>
+            </Col>
+            <Col xs='12'>
+              <Form.Label>
+                Photo
+                <input 
+                  type='file'
+                  accept='image/*'
+                  onChange={onSelectFile}
+                />
+              </Form.Label>
+            </Col>
+          </Form.Row>
         </Col>
-        <Col sm='8' md='7' lg='6'>
+        <Col xs='12' md='7' lg='6' className='imageCropper'>
           {imageSource && (
             <ReactCrop
               src={imageSource}
@@ -139,8 +126,11 @@ const RecipeCreate = () => {
             />
           )}
         </Col>
-      </Row>
-    </div>
+        <Col xs='12'>
+          <button className='btn btn-primary save-btn'>Save</button>
+        </Col>
+      </Form.Row>
+      </Form>
   );
 };
 
