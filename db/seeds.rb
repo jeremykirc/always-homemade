@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+require 'constants'
+
+# Load config depending on environment.
+seed_file = Rails.env.production? ? 'seeds-prod.yml' : 'seeds-dev.yml'
+config = YAML.load_file(Rails.root.join("config/#{seed_file}"))
+
+# Loop through the config keys to create database records.
+config.keys.each do |model_name|
+  next if config[model_name].blank?
+
+  config[model_name].each_key do |instance|
+    begin
+      model = model_name.singularize.camelize.constantize
+      object = model.create!(config[model_name][instance])
+    rescue ActiveRecord::RecordInvalid => e
+      next if e.message.include?('has already been taken')
+
+      e.raise
+    end
+  end
+end

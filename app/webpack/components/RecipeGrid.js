@@ -13,12 +13,12 @@ const RecipeGrid = () => {
     author: '',
     image_url: ''
   });
-  const [RecipeBoxes, setRecipeBoxes] = useState();
+  const [recipeBoxes, setrecipeBoxes] = useState();
 
   useEffect(() => {
     axios.get('/api/v1/recipes')
     .then(response => {
-      setRecipeBoxes(generateRecipeBoxes(response.data));
+      setrecipeBoxes(generaterecipeBoxes(response.data));
     })
     .catch(error => console.error(error));
   }, []);
@@ -30,7 +30,7 @@ const RecipeGrid = () => {
 
   const hideModal = () => setIsModalShown(false);
 
-  const generateRecipeBoxes = (recipes) => {
+  const generaterecipeBoxes = (recipes) => {
     return recipes.map((recipe, i) => (
       <RecipeBox
         key={i}
@@ -42,7 +42,7 @@ const RecipeGrid = () => {
 
   return (
     <Container className='recipe-grid'>
-      <Row>{RecipeBoxes}</Row>
+      <Row>{recipeBoxes}</Row>
       <RecipeModal
         show={isModalShown}
         recipe={recipe}

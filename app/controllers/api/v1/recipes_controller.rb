@@ -8,9 +8,13 @@ module Api
       def create
         recipe = Recipe.new(
           title: params[:title],
+          subtitle: params[:subtitle],
           description: params[:description],
+          link: params[:link],
+          instructions: JSON.parse(params[:instructions]),
           user: current_user
         )
+        byebug
         recipe.image.attach(params[:image]) if params[:image].present?
         recipe.save!
         render json: '', status: :ok

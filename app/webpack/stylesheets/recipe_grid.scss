@@ -34,21 +34,16 @@
         text-transform: uppercase;
         letter-spacing: 1.5px;
       }
-      .recipe-desc {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
       .recipe-author {
         font-size: 14px;
         color: $gray;
       }
       .review-stars {
-        float: left;
         i {
           color: gold;
         }
         .review-count {
+          color: $gray;
           padding-left: 5px;
         }
       }
