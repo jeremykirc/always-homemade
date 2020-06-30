@@ -1,6 +1,39 @@
 .recipe-grid {
   margin-left: 2%;
   margin-top: 30px;
+  .recipe-group-filters-container {
+    padding-left: 0px;
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0px;
+      li {
+        margin-right: 20px;
+        padding-bottom: 5px;
+        color: $gray-dark;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        &:hover {
+          cursor: pointer;
+        }
+        &:hover, &:focus, &:active, &:active:hover, &:active:focus {
+          color: $primary;
+        }
+        &.active {
+          color: $primary;
+          border-bottom: 2px solid $primary;
+        }
+      }
+    }
+  }
+  .recipe-search-container input {
+    font-size: 13px;
+    float: right;
+    width: 50%;
+  }
   .recipe-box-container {
     padding: 0px;
     .recipe-box {

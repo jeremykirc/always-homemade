@@ -14,7 +14,6 @@ module Api
           instructions: JSON.parse(params[:instructions]),
           user: current_user
         )
-        byebug
         recipe.image.attach(params[:image]) if params[:image].present?
         recipe.save!
         render json: '', status: :ok
@@ -32,8 +31,13 @@ module Api
 
       def recipes
         Recipe.all.includes(:user).map do |recipe|
-          recipe.as_json.merge({ author: recipe.author.full_name,
-                                 image_url: recipe.image_url })
+          recipe.as_json.merge({
+            author: {
+              id: recipe.user_id,
+              display_name: "Chef #{recipe.author.full_name}",
+            },
+            image_url: recipe.image_url
+          })
         end
       end
 

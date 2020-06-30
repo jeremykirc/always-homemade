@@ -1,37 +1,44 @@
 import axios from 'axios';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 
 import RecipeBox from './RecipeBox';
+import RecipeGridFilterList from './RecipeGridFilterList';
 import RecipeModal from './RecipeModal';
+import getFilteredRecipes from '../selectors/filters';
+import { setRecipes } from '../actions/recipes';
 
-const RecipeGrid = () => {
+const RecipeGrid = ({ recipes, filters, dispatch }) => {
   const [isModalShown, setIsModalShown] = useState(false);
-  const [recipe, setRecipe] = useState({
+  const [activeRecipe, setActiveRecipe] = useState({
     title: '',
     description: '',
-    author: '',
+    author: {
+      id: '',
+      display_name: '',
+    },
     image_url: ''
   });
-  const [recipeBoxes, setrecipeBoxes] = useState();
 
   useEffect(() => {
     axios.get('/api/v1/recipes')
     .then(response => {
-      setrecipeBoxes(generaterecipeBoxes(response.data));
+      dispatch(setRecipes(response.data));
     })
     .catch(error => console.error(error));
   }, []);
 
   const showModal = (recipe) => {
-    setRecipe(recipe);
+    setActiveRecipe(recipe);
     setIsModalShown(true);
   };
 
   const hideModal = () => setIsModalShown(false);
 
-  const generaterecipeBoxes = (recipes) => {
-    return recipes.map((recipe, i) => (
+  const recipeBoxes = () => {
+    let filteredRecipes = getFilteredRecipes(recipes, filters);
+    return filteredRecipes.map((recipe, i) => (
       <RecipeBox
         key={i}
         recipe={recipe}
@@ -42,14 +49,20 @@ const RecipeGrid = () => {
 
   return (
     <Container className='recipe-grid'>
-      <Row>{recipeBoxes}</Row>
+      <RecipeGridFilterList />
+      <Row>{recipeBoxes()}</Row>
       <RecipeModal
         show={isModalShown}
-        recipe={recipe}
+        recipe={activeRecipe}
         handleClose={hideModal}
       />
     </Container>
   );
 };
 
-export default RecipeGrid;
+const mapStateToProps = (state) => ({
+  recipes: state.recipes,
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(RecipeGrid);

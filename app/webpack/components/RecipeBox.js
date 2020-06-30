@@ -23,9 +23,9 @@ const RecipeBox = ({ handleRecipeBoxClick, recipe }) => {
       </div>
       <div className='recipe-info'>
         <i className={`${favRecipe ? 'fas' : 'far'} fa-heart fav-recipe-btn`} onClick={handleFavRecipe}></i>
-        <ReviewStars />
+        <ReviewStars starCount='4.5' />
         <div className='recipe-title'>{recipe.title}</div>
-        <div className='recipe-author'>Chef {recipe.author}</div>
+        <div className='recipe-author'>{recipe.author.display_name}</div>
       </div>
     </Col>
   );
