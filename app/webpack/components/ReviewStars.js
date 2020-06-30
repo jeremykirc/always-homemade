@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const ReviewStars = ({ starCount, reviewCount = 0 }) => {
+const ReviewStars = ({ rating, reviewCount = 0 }) => {
   let stars = [];
-  if (starCount) {
-    [...Array(Math.floor(starCount))].map((_e, i) => {
+  if (rating) {
+    [...Array(Math.floor(rating))].map((_e, i) => {
       stars.push(<i key={i} className='fas fa-star'></i>);
     });
-    if (starCount - Math.floor(starCount) >= 0.5) {
-      stars.push(<i key={starCount} className='fas fa-star-half-alt'></i>);
+    if (rating - Math.floor(rating) >= 0.5) {
+      stars.push(<i key={rating} className='fas fa-star-half-alt'></i>);
     }
   }
-  let emptyStarsCount = 5 - stars.length;
-    [...Array(emptyStarsCount)].map((_e, i) => {
-      stars.push(<i key={starCount - 1 + i} className='far fa-star'></i>);
+  let emptyRating = 5 - stars.length;
+    [...Array(emptyRating)].map((_e, i) => {
+      stars.push(<i key={rating - 1 + i} className='far fa-star'></i>);
     });
   return (
     <div className='review-stars'>
