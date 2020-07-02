@@ -6,10 +6,12 @@ import { Container, Row } from 'react-bootstrap';
 import RecipeBox from './RecipeBox';
 import RecipeGridFilterList from './RecipeGridFilterList';
 import RecipeModal from './RecipeModal';
+import Preloader from './Preloader';
 import getFilteredRecipes from '../selectors/filters';
 import { setRecipes } from '../actions/recipes';
+import { loaded } from '../actions/preloader';
 
-const RecipeGrid = ({ recipes, filters, dispatch }) => {
+const RecipeGrid = ({ recipes, filters, preloader, dispatch }) => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [activeRecipe, setActiveRecipe] = useState({
     title: '',
@@ -24,6 +26,7 @@ const RecipeGrid = ({ recipes, filters, dispatch }) => {
   useEffect(() => {
     axios.get('/api/v1/recipes')
     .then(response => {
+      dispatch(loaded());
       dispatch(setRecipes(response.data));
     })
     .catch(error => console.error(error));
@@ -50,6 +53,7 @@ const RecipeGrid = ({ recipes, filters, dispatch }) => {
   return (
     <Container className='recipe-grid'>
       <RecipeGridFilterList />
+      {preloader.visible && <Preloader />}
       <Row>{recipeBoxes()}</Row>
       <RecipeModal
         show={isModalShown}
@@ -61,6 +65,7 @@ const RecipeGrid = ({ recipes, filters, dispatch }) => {
 };
 
 const mapStateToProps = (state) => ({
+  preloader: state.preloader,
   recipes: state.recipes,
   filters: state.filters
 });
