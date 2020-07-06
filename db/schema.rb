@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_06_28_175636) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
-    t.string "subtitle"
     t.string "link"
     t.text "description"
     t.json "instructions"
@@ -46,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_175636) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
+    t.string "email"
     t.string "first_name"
     t.string "last_name"
     t.string "password_digest"
