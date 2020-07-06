@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Home from '../components/Home';
 import RecipeCreate from '../components/RecipeCreate';
 import NotFound from '../components/NotFound';
+import SignUp from '../components/SignUp';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const AppRouter = () => (
       <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/images/new' component={RecipeCreate} />
+        <Route path='/signup' component={SignUp} />
         <Route component={NotFound} />
       </Switch>
     </Container>

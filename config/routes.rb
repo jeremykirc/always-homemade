@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get  '/recipes', to: 'recipes#index'
       post '/recipes', to: 'recipes#create'
+      post '/users', to: 'users#create'
     end
   end
 end
