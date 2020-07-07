@@ -7,7 +7,7 @@ import RecipeBox from './RecipeBox';
 import RecipeGridFilterList from './RecipeGridFilterList';
 import RecipeModal from './RecipeModal';
 import Preloader from './Preloader';
-import getFilteredRecipes from '../selectors/filters';
+import getFilteredRecipes from '../selectors/recipes';
 import { setRecipes } from '../actions/recipes';
 import { loaded } from '../actions/preloader';
 

@@ -8,7 +8,6 @@ module Api
       def create
         recipe = Recipe.new(
           title: params[:title],
-          subtitle: params[:subtitle],
           description: params[:description],
           link: params[:link],
           instructions: JSON.parse(params[:instructions]),

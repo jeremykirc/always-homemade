@@ -6,7 +6,7 @@ import ReactCrop from 'react-image-crop';
 import { getCroppedImg } from '../helpers/crop-image';
 import RecipeInstructionInput from './RecipeInstructionInput';
 
-const RecipeCreate = () => {
+const RecipeCreate = ({ history }) => {
   const handleInputChange = (e) => {
     if (e.target.getAttribute('name') == 'instruction') {
       let instructions = formData.instructions || [];
@@ -25,8 +25,14 @@ const RecipeCreate = () => {
   const [imageSource, setImageSource] = useState(null);
   const [cropData, setCropData] = useState({});
   const [imageRef, setImageRef] = useState();
-  const [croppedImageUrl, setCroppedImageUrl] = useState();
-  const [formData, setFormData] = useState({});
+  const [croppedImageBlob, setCroppedImageBlob] = useState();
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    link: '',
+    instructions: '',
+    image: ''
+  });
   const [instructions, setInstructions] = useState(['']);
 
   const handleFormSubmit = (e) => {
@@ -39,7 +45,8 @@ const RecipeCreate = () => {
         data.append(key, formData[key]);
       }
     }
-    data.append('image', croppedImageUrl);
+    console.log(croppedImageBlob)
+    data.append('image', croppedImageBlob);
 
     const token = document.querySelector('[name=csrf-token]').content;
     axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
@@ -49,7 +56,7 @@ const RecipeCreate = () => {
       }
     })
     .then(() => {
-      location.href = '/';
+      history.push('/');
     })
     .catch(error => console.error(error))
   }
@@ -77,9 +84,8 @@ const RecipeCreate = () => {
   const onCropComplete = async (crop) => {
     if (imageRef && crop.width && crop.height) {
       try {
-        const imageUrl = await getCroppedImg(imageRef, crop, 'recipe.jpg');
-        window.URL.revokeObjectURL(croppedImageUrl);
-        setCroppedImageUrl(imageUrl);
+        const imageBlob = await getCroppedImg(imageRef, crop);
+        setCroppedImageBlob(imageBlob);
       } catch (err) {
         console.error('Failed to crop image', err);
       }
@@ -94,25 +100,19 @@ const RecipeCreate = () => {
             <Col xs='12' lg='6'>
               <Form.Label>
                 Title
-                <Form.Control name='title' onChange={handleInputChange}></Form.Control>
-              </Form.Label>
-            </Col>
-            <Col xs='12' lg='6'>
-              <Form.Label>
-                Subtitle
-                <Form.Control name='subtitle' onChange={handleInputChange}></Form.Control>
+                <Form.Control name='title' onChange={handleInputChange} value={formData.title}></Form.Control>
               </Form.Label>
             </Col>
             <Col xs='12'>
               <Form.Label>
                 Description
-                <Form.Control as='textarea' rows='5' name='description' onChange={handleInputChange}></Form.Control>
+                <Form.Control as='textarea' rows='5' name='description' onChange={handleInputChange} value={formData.description}></Form.Control>
               </Form.Label>
             </Col>
             <Col xs='12'>
               <Form.Label>
                 Link
-                <Form.Control name='link' onChange={handleInputChange}></Form.Control>
+                <Form.Control name='link' onChange={handleInputChange} value={formData.link}></Form.Control>
               </Form.Label>
             </Col>
             <Col xs='12'>
@@ -120,8 +120,8 @@ const RecipeCreate = () => {
                 Instructions
                 <ol>
                   {
-                    instructions.map((_val, index) => {
-                      return <RecipeInstructionInput index={index} onChange={handleInputChange} />
+                    instructions.map((value, index) => {
+                      return <RecipeInstructionInput index={index} onChange={handleInputChange} value={value} />
                     })
                   }
                 </ol>

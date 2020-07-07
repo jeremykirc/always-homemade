@@ -19,13 +19,11 @@ export function getCroppedImg(image, crop, fileName) {
   );
 
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
     canvas.toBlob((blob) => {
       if (!blob) {
         reject(new Error('Canvas is empty'));
       }
-      blob.name = fileName;
-      resolve(blob)
-    }, 'image/jpg');
+      resolve(blob);
+    }, 'image/jpeg');
   });
 }
