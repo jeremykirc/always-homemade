@@ -1,8 +1,8 @@
 import recipesReducer from '../../reducers/recipes';
+import recipes from '../fixtures/recipes';
 
 describe('recipesReducer', () => {
   let currentState = [];
-  let recipes = ['foo', 'bar'];
 
   it('should set up default recipes value', () => {
     const state = recipesReducer(undefined, { type: '@@INIT' });
