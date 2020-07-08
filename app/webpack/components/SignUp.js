@@ -84,9 +84,7 @@ const SignUp = ({ setSessionAndRedirect }) => {
       </Form.Row>
       <Form.Row>
         <Form.Group as={Col} xs='12'>
-          <Button variant='primary' type='submit'>
-            Submit
-          </Button>
+          <Button variant='primary' type='submit'>Submit</Button>
         </Form.Group>
       </Form.Row>
     </Form>

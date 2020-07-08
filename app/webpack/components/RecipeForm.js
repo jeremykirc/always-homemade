@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Col, Form } from 'react-bootstrap';
+import { Button, Col, Form } from 'react-bootstrap';
 import ReactCrop from 'react-image-crop';
 
 import { getCroppedImg } from '../helpers/crop-image';
@@ -163,7 +163,7 @@ const RecipeForm = ({ history }) => {
           )}
         </Col>
         <Col xs='12'>
-          <button className='btn btn-primary save-btn'>Save</button>
+          <Button variant='primary' type='submit'>Submit</Button>
         </Col>
       </Form.Row>
       </Form>
