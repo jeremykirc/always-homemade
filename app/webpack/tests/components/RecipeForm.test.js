@@ -7,12 +7,11 @@ import RecipeForm from '../../components/RecipeForm';
 jest.mock('axios');
 
 describe('RecipeForm', () => {
-  let wrapper;
-  let history;
+  let history, wrapper;
 
   beforeEach(() => {
-    history = { push: jest.fn() };
     jest.spyOn(document, 'querySelector').mockReturnValue({ content: 'csrfToken' });
+    history = { push: jest.fn() };
     wrapper = shallow(<RecipeForm history={history} />);
   });
 
@@ -33,6 +32,6 @@ describe('RecipeForm', () => {
     });
     await flushPromises();
 
-    expect(history.push).toHaveBeenCalledWith('/');
+    expect(history.push).toHaveBeenLastCalledWith('/');
   }); 
 });
