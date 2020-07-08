@@ -64,6 +64,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -127,6 +128,7 @@ GEM
     puma (4.3.1)
       nio4r (~> 2.0)
     rack (2.2.2)
+    rack-cors (1.0.2)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -232,6 +234,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -243,6 +246,7 @@ DEPENDENCIES
   minitest
   mocha
   puma (~> 4.1)
+  rack-cors
   rails (~> 6.0.2, >= 6.0.2.1)
   react-rails
   sass-rails (>= 6)

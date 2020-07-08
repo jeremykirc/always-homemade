@@ -4,9 +4,9 @@ import { Form } from 'react-bootstrap';
 
 import { setTextFilter } from '../actions/filters';
 
-const Search = ({ text, dispatch }) => {
+const Search = ({ text, setTextFilter }) => {
   const handleChange = (e) => {
-    dispatch(setTextFilter(e.target.value))
+    setTextFilter(e.target.value)
   }
 
   return (
@@ -18,4 +18,8 @@ const mapStateToProps = (state) => ({
   text: state.filters.text
 });
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = (dispatch) => ({
+  setTextFilter: (text) => { dispatch(setTextFilter(text)) }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

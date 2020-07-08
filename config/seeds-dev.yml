@@ -1,5 +1,7 @@
 users:
   jeremykirc:
+    email: 'jeremykirc@gmail.com'
     first_name: 'Jeremy'
     last_name: 'Kirchhoff'
-    username: 'jeremykirc'
+    password: 'abc123'
+    password_confirmation: 'abc123'

@@ -7,11 +7,11 @@ import RecipeBox from './RecipeBox';
 import RecipeGridFilterList from './RecipeGridFilterList';
 import RecipeModal from './RecipeModal';
 import Preloader from './Preloader';
-import getFilteredRecipes from '../selectors/filters';
+import getFilteredRecipes from '../selectors/recipes';
 import { setRecipes } from '../actions/recipes';
 import { loaded } from '../actions/preloader';
 
-const RecipeGrid = ({ recipes, filters, preloader, dispatch }) => {
+const RecipeGrid = ({ recipes, filters, preloader, setRecipes }) => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [activeRecipe, setActiveRecipe] = useState({
     title: '',
@@ -26,8 +26,7 @@ const RecipeGrid = ({ recipes, filters, preloader, dispatch }) => {
   useEffect(() => {
     axios.get('/api/v1/recipes')
     .then(response => {
-      dispatch(loaded());
-      dispatch(setRecipes(response.data));
+      setRecipes(response.data);
     })
     .catch(error => console.error(error));
   }, []);
@@ -70,4 +69,11 @@ const mapStateToProps = (state) => ({
   filters: state.filters
 });
 
-export default connect(mapStateToProps)(RecipeGrid);
+const mapDispatchToProps = (dispatch) => ({
+  setRecipes: (recipes) => {
+    dispatch(setRecipes(recipes));
+    dispatch(loaded());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeGrid);
