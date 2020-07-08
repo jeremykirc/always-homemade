@@ -26,6 +26,7 @@ body {
 }
 
 body {
+  margin-bottom: 20px;
   .navbar {
     background-color: $white;
     .navbar-toggler {
@@ -44,10 +45,10 @@ body {
       }
       .dropdown-menu {
         padding: 0px;
-	margin-top: 8px;
+        margin-top: 8px;
         border: none;
-	border-radius: 0px;
-	background-color: $primary;
+        border-radius: 0px;
+        background-color: $primary;
         a.dropdown-item {
           padding: 8px 15px;
           font-size: 13px;
@@ -66,6 +67,9 @@ body {
 .modal {
   button.close {
     outline: none !important;
+    span {
+      font-size: 26px;
+    }
   }
 }
 

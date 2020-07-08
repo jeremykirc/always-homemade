@@ -95,53 +95,58 @@ const RecipeForm = ({ history }) => {
       <Form.Row>
         <Col xs='12' md='5' lg='6'>
           <Form.Row>
-            <Col xs='12'>
-              <Form.Label>
-                Title
-                <Form.Control name='title' onChange={handleInputChange} value={formData.title}></Form.Control>
-              </Form.Label>
-            </Col>
-            <Col xs='12'>
-              <Form.Label>
-                Description
-                <Form.Control as='textarea' rows='5' name='description' onChange={handleInputChange} value={formData.description}></Form.Control>
-              </Form.Label>
-            </Col>
-            <Col xs='12'>
-              <Form.Label>
-                Link
-                <Form.Control name='link' onChange={handleInputChange} value={formData.link}></Form.Control>
-              </Form.Label>
-            </Col>
-            <Col xs='12'>
-              <Form.Label>
-                Instructions
-                <ol>
-                  {
-                    instructions.map((value, index) => {
-                      return (
-                        <RecipeInstructionInput
-                          key={index}
-                          index={index}
-                          value={value}
-                          onChange={handleInputChange} />
-                      )
-                    })
-                  }
-                </ol>
-                <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstruction}></i>
-              </Form.Label>
-            </Col>
-            <Col xs='12'>
-              <Form.Label>
-                Photo
-                <input 
-                  type='file'
-                  accept='image/*'
-                  onChange={onSelectFile}
-                />
-              </Form.Label>
-            </Col>
+            <Form.Group as={Col} xs='12' controlId='title'>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                required
+                name='title'
+                value={formData.title}
+                onChange={handleInputChange}>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col} xs='12' controlId='description'>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows='5'
+                name='description'
+                value={formData.description}
+                onChange={handleInputChange}>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col} xs='12' controlId='link'>
+              <Form.Label>Link</Form.Label>
+              <Form.Control
+                name='link'
+                value={formData.link}
+                 onChange={handleInputChange}>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col} xs='12' controlId='instructions'>
+              <Form.Label>Instructions</Form.Label>
+              <ol>
+                {
+                  instructions.map((value, index) => {
+                    return (
+                      <RecipeInstructionInput
+                        key={index}
+                        index={index}
+                        value={value}
+                        onChange={handleInputChange} />
+                    )
+                  })
+                }
+              </ol>
+              <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstruction}></i>
+            </Form.Group>
+            <Form.Group as={Col} xs='12' controlId='photo'>
+              <Form.Label>Photo</Form.Label>
+              <input 
+                type='file'
+                accept='image/*'
+                onChange={onSelectFile}
+              />
+            </Form.Group>
           </Form.Row>
         </Col>
         <Col xs='12' md='7' lg='6' className='imageCropper'>
