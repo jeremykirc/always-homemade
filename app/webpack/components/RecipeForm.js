@@ -6,7 +6,7 @@ import ReactCrop from 'react-image-crop';
 import { getCroppedImg } from '../helpers/crop-image';
 import RecipeInstructionInput from './RecipeInstructionInput';
 
-const RecipeCreate = ({ history }) => {
+const RecipeForm = ({ history }) => {
   const handleInputChange = (e) => {
     if (e.target.getAttribute('name') == 'instruction') {
       let instructions = formData.instructions || [];
@@ -37,6 +37,7 @@ const RecipeCreate = ({ history }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     let data = new FormData();
     for (const key in formData) {
       if (key == 'instructions') {
@@ -45,11 +46,10 @@ const RecipeCreate = ({ history }) => {
         data.append(key, formData[key]);
       }
     }
-    console.log(croppedImageBlob)
     data.append('image', croppedImageBlob);
 
-    const token = document.querySelector('[name=csrf-token]').content;
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+    const csrfToken = document.querySelector('[name=csrf-token]').content;
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
     axios.post('/api/v1/recipes', data, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -58,7 +58,7 @@ const RecipeCreate = ({ history }) => {
     .then(() => {
       history.push('/');
     })
-    .catch(error => console.error(error))
+    .catch(error => { console.error(error) })
   }
 
   // Set the src state when the user selects a file.
@@ -161,4 +161,4 @@ const RecipeCreate = ({ history }) => {
   );
 };
 
-export default RecipeCreate;
+export default RecipeForm;

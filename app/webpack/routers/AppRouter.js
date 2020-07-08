@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Home from '../components/Home';
-import RecipeCreate from '../components/RecipeCreate';
+import RecipeForm from '../components/RecipeForm';
 import NotFound from '../components/NotFound';
 
 const AppRouter = () => (
@@ -13,7 +13,7 @@ const AppRouter = () => (
     <Container>
       <Switch>
         <Route path='/' component={Home} exact />
-        <Route path='/images/new' component={RecipeCreate} />
+        <Route path='/recipes/new' component={RecipeForm} />
         <Route component={NotFound} />
       </Switch>
     </Container>
