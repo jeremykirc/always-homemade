@@ -47,9 +47,11 @@ const Login = ({ setSessionAndRedirect }) => {
         </Form.Group>
       </Form.Row>
       <Form.Row>
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
+        <Form.Group as={Col} xs='12'>
+          <Button variant='primary' type='submit'>
+            Submit
+          </Button>
+        </Form.Group>
       </Form.Row>
     </Form>
   );

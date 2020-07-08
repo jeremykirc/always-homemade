@@ -9,7 +9,6 @@
 
 input, textarea, select {
   margin-bottom: 20px;
-  margin-top: 5px;
   display: block;
   &.form-control {
     height: 35px;
@@ -96,4 +95,8 @@ select {
     cursor: pointer;
     color: $gray-dark;
   }
+}
+
+.form-group {
+  margin-bottom: 0px;
 }
