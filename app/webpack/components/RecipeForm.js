@@ -55,8 +55,8 @@ const RecipeForm = ({ history }) => {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then(() => { history.push('/'); })
-    .catch(error => { console.error(error); })
+    .then(() => history.push('/'))
+    .catch(error => console.error(error))
   }
 
   // Set the src state when the user selects a file.
@@ -95,7 +95,7 @@ const RecipeForm = ({ history }) => {
       <Form.Row>
         <Col xs='12' md='5' lg='6'>
           <Form.Row>
-            <Col xs='12' lg='6'>
+            <Col xs='12'>
               <Form.Label>
                 Title
                 <Form.Control name='title' onChange={handleInputChange} value={formData.title}></Form.Control>
@@ -119,7 +119,13 @@ const RecipeForm = ({ history }) => {
                 <ol>
                   {
                     instructions.map((value, index) => {
-                      return <RecipeInstructionInput index={index} onChange={handleInputChange} value={value} />
+                      return (
+                        <RecipeInstructionInput
+                          key={index}
+                          index={index}
+                          value={value}
+                          onChange={handleInputChange} />
+                      )
                     })
                   }
                 </ol>

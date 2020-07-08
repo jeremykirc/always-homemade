@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
-import { signIn } from '../api/v1/users';
+import { login } from '../api/v1/users';
 import { FormContext } from '../context/form-context';
 
-const SignIn = ({ history }) => {
+const Login = ({ setSessionAndRedirect }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const authenticityToken = useContext(FormContext);
@@ -11,13 +11,13 @@ const SignIn = ({ history }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    signIn({
+    login({
       email,
       password,
-      authenticityToken
+      authenticity_token: authenticityToken
     })
-    .then(() => { history.push('/'); })
-    .catch(error => { console.error(error) })
+    .then(resp => setSessionAndRedirect(resp.data))
+    .catch(error => console.error(error))
   };
 
   return (
@@ -55,4 +55,4 @@ const SignIn = ({ history }) => {
   );
 };
 
-export default SignIn;
+export default Login;

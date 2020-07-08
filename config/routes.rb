@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # Set paths for sessions.
-      get  '/login',                to: 'sessions#new'
-      post '/login',                to: 'sessions#create'
-      get  '/authenticate_session', to: 'sessions#authenticate'
-      get  '/logout',               to: 'sessions#destroy'
+      get    '/login',                to: 'sessions#new'
+      post   '/login',                to: 'sessions#create'
+      get    '/authenticate_session', to: 'sessions#authenticate'
+      delete '/logout',               to: 'sessions#destroy'
 
       # Set paths for recipes.
       get  '/recipes', to: 'recipes#index'

@@ -24,13 +24,13 @@ const Header = ({ loggedIn }) => (
             <NavLink to='/recipes/new' className='nav-link'>Add Recipe</NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink to='/sign_out' className='nav-link'>Sign out</NavLink>
+            <NavLink to='/logout' className='nav-link'>Logout</NavLink>
           </li>
         </ul>
         :
         <ul className='navbar-nav'>
           <li className='nav-item'>
-            <NavLink to='/sign_in' className='nav-link'>Sign in</NavLink>
+            <NavLink to='/login' className='nav-link'>Login</NavLink>
           </li>
           <li className='nav-item'>
             <NavLink to='/sign_up' className='nav-link'>Sign up</NavLink>

@@ -9,6 +9,7 @@ const RecipeInstructionInput = ({ index, value, onChange }) => {
         rows='2'
         name='instruction'
         data-index={index}
+        defaultValue={value}
         onChange={onChange}>
       </Form.Control>
     </li>

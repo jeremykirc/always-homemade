@@ -8,7 +8,7 @@ module Api
       def create
         user = User.create!(user_params)
         log_in(user)
-        render json: nil, status: :created
+        render json: { logged_in: true, user: user }
       rescue ActiveRecord::RecordInvalid => e
         render json: e.message, status: :internal_server_error
       end

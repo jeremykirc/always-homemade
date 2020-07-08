@@ -11,7 +11,7 @@ import getFilteredRecipes from '../selectors/recipes';
 import { setRecipes } from '../actions/recipes';
 import { loaded } from '../actions/preloader';
 
-const RecipeGrid = ({ recipes, filters, preloader, setRecipes }) => {
+const RecipeGrid = ({ user, recipes, filters, preloader, setRecipes }) => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [activeRecipe, setActiveRecipe] = useState({
     title: '',
@@ -25,10 +25,8 @@ const RecipeGrid = ({ recipes, filters, preloader, setRecipes }) => {
 
   useEffect(() => {
     axios.get('/api/v1/recipes')
-    .then(response => {
-      setRecipes(response.data);
-    })
-    .catch(error => console.error(error));
+    .then(resp => { setRecipes(resp.data); })
+    .catch(error => { console.error(error); })
   }, []);
 
   const showModal = (recipe) => {
@@ -39,7 +37,7 @@ const RecipeGrid = ({ recipes, filters, preloader, setRecipes }) => {
   const hideModal = () => setIsModalShown(false);
 
   const recipeBoxes = () => {
-    let filteredRecipes = getFilteredRecipes(recipes, filters);
+    let filteredRecipes = getFilteredRecipes(recipes, filters, user);
     return filteredRecipes.map((recipe, i) => (
       <RecipeBox
         key={i}
@@ -64,6 +62,7 @@ const RecipeGrid = ({ recipes, filters, preloader, setRecipes }) => {
 };
 
 const mapStateToProps = (state) => ({
+  user: state.session.user,
   preloader: state.preloader,
   recipes: state.recipes,
   filters: state.filters

@@ -3,7 +3,7 @@ import { Button, Col, Form } from 'react-bootstrap';
 import { signUp } from '../api/v1/users';
 import { FormContext } from '../context/form-context';
 
-const SignUp = ({ history }) => {
+const SignUp = ({ setSessionAndRedirect }) => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -22,8 +22,8 @@ const SignUp = ({ history }) => {
       password_confirmation: passwordConfirmation,
       authenticity_token: authenticityToken,
     })
-    .then(() => { history.push('/'); })
-    .catch(error => { console.error(error) })
+    .then(resp => setSessionAndRedirect(resp.data))
+    .catch(error => console.error(error))
   };
 
   return (

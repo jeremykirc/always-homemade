@@ -12,8 +12,12 @@ export async function signUp(data) {
   return await axios.post('/api/v1/users', data, defaultOptions);
 }
 
-export async function signIn(data) {
+export async function login(data) {
   return await axios.post('/api/v1/login', data, defaultOptions);
+}
+
+export async function logout() {
+  return await axios.delete('/api/v1/logout', defaultOptions);
 }
 
 export async function authenticateSession() {
