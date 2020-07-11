@@ -1,5 +1,7 @@
-import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import React, { useContext,useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
+
 import { login } from '../api/v1/users';
 import { FormContext } from '../context/form-context';
 
@@ -17,7 +19,7 @@ const Login = ({ setSessionAndRedirect }) => {
       authenticity_token: authenticityToken
     })
     .then(resp => setSessionAndRedirect(resp.data))
-    .catch(error => console.error(error))
+    .catch(error => console.error(error));
   };
 
   return (
@@ -53,6 +55,10 @@ const Login = ({ setSessionAndRedirect }) => {
       </Form.Row>
     </Form>
   );
+};
+
+Login.propTypes = {
+  setSessionAndRedirect: PropTypes.func.isRequired,
 };
 
 export default Login;

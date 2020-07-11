@@ -24,4 +24,9 @@ const ReviewStars = ({ starCount = 0, reviewCount = 0 }) => {
   );
 };
 
+ReviewStars.propTypes = {
+  starCount: PropTypes.number,
+  reviewCount: PropTypes.number,
+};
+
 export default ReviewStars;

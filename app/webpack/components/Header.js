@@ -1,4 +1,5 @@
 import logo from 'images/text-with-whisk-color.png';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
@@ -41,5 +42,9 @@ const Header = ({ loggedIn }) => (
     </Container>
   </nav>
 );
+
+Header.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+};
 
 export default Header;

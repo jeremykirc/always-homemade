@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import ReactCrop from 'react-image-crop';
@@ -9,18 +10,19 @@ import RecipeInstructionInput from './RecipeInstructionInput';
 const RecipeForm = ({ history }) => {
   const handleInputChange = (e) => {
     if (e.target.getAttribute('name') == 'instruction') {
-      let instructions = formData.instructions || [];
+      let instructions = formData.instructions;
       let index = e.target.getAttribute('data-index');
       instructions[index] = e.target.value;
-      setFormData({...formData, instructions: instructions })
+      setFormData({...formData, instructions: instructions });
     } else {
-      setFormData({...formData, [e.target.name]: e.target.value })
+      setFormData({...formData, [e.target.name]: e.target.value });
     }
-  }
+  };
 
-  const addInstruction = () => {
-    setInstructions([...instructions, '']);
-  }
+  const addInstructionInput = () => {
+    let instructions = formData.instructions;
+    setFormData({...formData, instructions: [...instructions, ''] });
+  };
 
   const [imageSource, setImageSource] = useState(null);
   const [cropData, setCropData] = useState({});
@@ -30,10 +32,9 @@ const RecipeForm = ({ history }) => {
     title: '',
     description: '',
     link: '',
-    instructions: '',
+    instructions: [''],
     image: ''
   });
-  const [instructions, setInstructions] = useState(['']);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -56,8 +57,8 @@ const RecipeForm = ({ history }) => {
       }
     })
     .then(() => history.push('/'))
-    .catch(error => console.error(error))
-  }
+    .catch(error => console.error(error));
+  };
 
   // Set the src state when the user selects a file.
   const onSelectFile = (e) => {
@@ -126,22 +127,22 @@ const RecipeForm = ({ history }) => {
               <Form.Label>Instructions</Form.Label>
               <ol>
                 {
-                  instructions.map((value, index) => {
+                  formData.instructions.map((value, index) => {
                     return (
                       <RecipeInstructionInput
                         key={index}
                         index={index}
                         value={value}
                         onChange={handleInputChange} />
-                    )
+                    );
                   })
                 }
               </ol>
-              <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstruction}></i>
+              <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstructionInput}></i>
             </Form.Group>
             <Form.Group as={Col} xs='12' controlId='photo'>
               <Form.Label>Photo</Form.Label>
-              <input 
+              <input
                 type='file'
                 accept='image/*'
                 onChange={onSelectFile}
@@ -168,6 +169,10 @@ const RecipeForm = ({ history }) => {
       </Form.Row>
       </Form>
   );
+};
+
+RecipeForm.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default RecipeForm;

@@ -1,25 +1,31 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import { setTextFilter } from '../actions/filters';
 
-const Search = ({ text, setTextFilter }) => {
+const Search = ({ text, setTextFilterDispatch }) => {
   const handleChange = (e) => {
-    setTextFilter(e.target.value)
-  }
+    setTextFilterDispatch(e.target.value);
+  };
 
   return (
     <Form.Control type='text' placeholder='Filter recipes...' value={text} onChange={handleChange}></Form.Control>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => ({
   text: state.filters.text
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setTextFilter: (text) => { dispatch(setTextFilter(text)) }
+  setTextFilterDispatch: (text) => { dispatch(setTextFilter(text)); }
 });
+
+Search.propTypes = {
+  text: PropTypes.string.isRequired,
+  setTextFilterDispatch: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

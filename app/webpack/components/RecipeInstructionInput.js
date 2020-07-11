@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
@@ -13,7 +14,13 @@ const RecipeInstructionInput = ({ index, value, onChange }) => {
         onChange={onChange}>
       </Form.Control>
     </li>
-  )
-}
+  );
+};
+
+RecipeInstructionInput.propTypes = {
+  index: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default RecipeInstructionInput;

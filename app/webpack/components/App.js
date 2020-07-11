@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -7,12 +8,16 @@ import configureStore from '../store/configureStore';
 
 const store = configureStore();
 
-const App = ({ authenticity_token }) => (
+const App = ({ authenticityToken }) => (
   <Provider store={store}>
-    <FormContext.Provider value={authenticity_token}>
+    <FormContext.Provider value={authenticityToken}>
       <AppRouter />
     </FormContext.Provider>
   </Provider>
 );
+
+App.propTypes = {
+  authenticityToken: PropTypes.string.isRequired,
+};
 
 export default App;

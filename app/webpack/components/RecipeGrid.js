@@ -1,17 +1,18 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
+import { loaded } from '../actions/preloader';
+import { setRecipes } from '../actions/recipes';
+import getFilteredRecipes from '../selectors/recipes';
+import Preloader from './Preloader';
 import RecipeBox from './RecipeBox';
 import RecipeGridFilterList from './RecipeGridFilterList';
 import RecipeModal from './RecipeModal';
-import Preloader from './Preloader';
-import getFilteredRecipes from '../selectors/recipes';
-import { setRecipes } from '../actions/recipes';
-import { loaded } from '../actions/preloader';
 
-const RecipeGrid = ({ user, recipes, filters, preloader, setRecipes }) => {
+const RecipeGrid = ({ user, recipes, filters, preloader, setRecipesDispatch }) => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [activeRecipe, setActiveRecipe] = useState({
     title: '',
@@ -25,8 +26,8 @@ const RecipeGrid = ({ user, recipes, filters, preloader, setRecipes }) => {
 
   useEffect(() => {
     axios.get('/api/v1/recipes')
-    .then(resp => { setRecipes(resp.data); })
-    .catch(error => { console.error(error); })
+    .then(resp => { setRecipesDispatch(resp.data); })
+    .catch(error => { console.error(error); });
   }, []);
 
   const showModal = (recipe) => {
@@ -69,10 +70,18 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setRecipes: (recipes) => {
+  setRecipesDispatch: (recipes) => {
     dispatch(setRecipes(recipes));
     dispatch(loaded());
   },
 });
+
+RecipeGrid.propTypes = {
+  user: PropTypes.object.isRequired,
+  recipes: PropTypes.array.isRequired,
+  filters: PropTypes.object.isRequired,
+  preloader: PropTypes.object.isRequired,
+  setRecipesDispatch: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeGrid);
