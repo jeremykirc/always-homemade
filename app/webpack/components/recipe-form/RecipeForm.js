@@ -1,9 +1,9 @@
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import ReactCrop from 'react-image-crop';
 
+import { createRecipe } from '../../api/v1/recipes';
 import { getCroppedImg } from '../../helpers/crop-image';
 import RecipeInstructionInput from './RecipeInstructionInput';
 
@@ -39,7 +39,7 @@ const RecipeForm = ({ history }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    let data = new FormData();
+    const data = new FormData();
     for (const key in formData) {
       if (key == 'instructions') {
         data.append(key, JSON.stringify(formData[key]));
@@ -49,16 +49,14 @@ const RecipeForm = ({ history }) => {
     }
     data.append('image', croppedImageBlob);
 
-    const csrfToken = document.querySelector('[name=csrf-token]').content;
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
-    axios.post('/api/v1/recipes', data, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-    .then(() => history.push('/'))
-    .catch(error => console.error(error));
-  };
+    createRecipe(data)
+      .then(() => {
+        history.push('/');
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
   // Set the src state when the user selects a file.
   const onSelectFile = (e) => {
