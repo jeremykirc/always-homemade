@@ -1,16 +1,14 @@
-.imageCropper {
-  .ReactCrop {
-    background-color: black;
-    img.ReactCrop__image {
-      min-height: 40vh;
-      max-height: 70vh;
-    }
+.ReactCrop {
+  background-color: black;
+  img.ReactCrop__image {
+    min-height: 40vh;
+    max-height: 70vh;
   }
-  @media(min-width: 768px) {
-    margin-top: 25px;
-    padding-left: 20px !important;
-  }
-  @media(max-width: 767px) {
-    margin-bottom: 10px;
-  }
+}
+@media(min-width: 768px) {
+  margin-top: 25px;
+  padding-left: 20px !important;
+}
+@media(max-width: 767px) {
+  margin-bottom: 10px;
 }

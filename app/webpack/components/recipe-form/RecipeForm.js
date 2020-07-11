@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
-import ReactCrop from 'react-image-crop';
 
 import { createRecipe } from '../../api/v1/recipes';
-import { getCroppedImg } from '../../helpers/crop-image';
+import RecipeImageCropper from './RecipeImageCropper';
 import RecipeInstructionInput from './RecipeInstructionInput';
 
 const RecipeForm = ({ history }) => {
@@ -25,8 +24,6 @@ const RecipeForm = ({ history }) => {
   };
 
   const [imageSource, setImageSource] = useState(null);
-  const [cropData, setCropData] = useState({});
-  const [imageRef, setImageRef] = useState();
   const [croppedImageBlob, setCroppedImageBlob] = useState();
   const [formData, setFormData] = useState({
     title: '',
@@ -56,7 +53,7 @@ const RecipeForm = ({ history }) => {
       .catch(error => {
         console.error(error);
       });
-  }
+  };
 
   // Set the src state when the user selects a file.
   const onSelectFile = (e) => {
@@ -64,28 +61,6 @@ const RecipeForm = ({ history }) => {
       const reader = new FileReader();
       reader.addEventListener('load', () => setImageSource(reader.result));
       reader.readAsDataURL(e.target.files[0]);
-    }
-  };
-
-  const onImageLoaded = (image) => {
-    setImageRef(image);
-    setCropData({
-      width: image.width,
-      aspect: 1,
-    });
-    return false;
-  };
-
-  const onCropChange = (_crop, percentCrop) => setCropData(percentCrop);
-
-  const onCropComplete = async (crop) => {
-    if (imageRef && crop.width && crop.height) {
-      try {
-        const imageBlob = await getCroppedImg(imageRef, crop);
-        setCroppedImageBlob(imageBlob);
-      } catch (err) {
-        console.error('Failed to crop image', err);
-      }
     }
   };
 
@@ -149,17 +124,11 @@ const RecipeForm = ({ history }) => {
           </Form.Row>
         </Col>
         <Col xs='12' md='7' lg='6' className='imageCropper'>
-          {imageSource && (
-            <ReactCrop
-              src={imageSource}
-              crop={cropData}
-              ruleOfThirds
-              keepSelection
-              onImageLoaded={onImageLoaded}
-              onComplete={onCropComplete}
-              onChange={onCropChange}
+          {imageSource && <RecipeImageCropper
+              imageSource={imageSource}
+              setCroppedImageBlob={setCroppedImageBlob}
             />
-          )}
+          }
         </Col>
         <Col xs='12'>
           <Button variant='primary' type='submit'>Submit</Button>
