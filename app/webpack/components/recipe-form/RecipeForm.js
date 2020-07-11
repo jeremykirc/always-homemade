@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import ReactCrop from 'react-image-crop';
 
-import { getCroppedImg } from '../helpers/crop-image';
+import { getCroppedImg } from '../../helpers/crop-image';
 import RecipeInstructionInput from './RecipeInstructionInput';
 
 const RecipeForm = ({ history }) => {

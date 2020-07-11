@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { shallow } from 'enzyme';
 import flushPromises from 'flush-promises';
-import RecipeForm from '../../components/RecipeForm';
+import RecipeForm from '../../../components/recipe-form/RecipeForm';
 
 jest.mock('axios');
 
