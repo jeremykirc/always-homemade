@@ -28,6 +28,7 @@ module Api
 
       private
 
+      # Return a list of recipes to display to the user.
       def recipes
         Recipe.all.includes(:user).map do |recipe|
           recipe.as_json.merge({
@@ -39,36 +40,6 @@ module Api
           })
         end
       end
-
-      def test_recipe_grid_data
-        [
-          {
-            title: 'Egg on Waffle',
-            description: 'Test1',
-            url: 'EggOnWaffle.jpg'
-          },
-          {
-            title: 'Roasted Carrots with Lentils',
-            description: 'Test2',
-            url: 'RoastedCarrotsAndLentils.jpg'
-          },
-          {
-            title: 'Mole Taco',
-            description: 'Test3',
-            url: 'MoleTaco.jpg'
-          },
-          {
-            title: 'Burrata and Orange',
-            description: 'Test4',
-            url: 'OttelenghiBurrataOrange.jpg'
-          },
-          {
-            title: 'Apricot Lavender Cake',
-            description: 'Test5',
-            url: 'ApricotLavenderCake.jpg'
-          }
-        ]
-      end 
     end
   end
 end

@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   before_save { email.downcase! }
 
+  # Return the users full name.
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   alias :author :user
   has_one_attached :image
 
+  # Return the url for the attached image, if any.
   def image_url
     return unless image.attached?
 

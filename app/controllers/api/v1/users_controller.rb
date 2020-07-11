@@ -1,7 +1,11 @@
 module Api
   module V1
     class UsersController < ParentController
-      wrap_parameters :user, include: %i[email first_name last_name password password_confirmation]
+      wrap_parameters :user, include: %i[email
+                                         first_name
+                                         last_name
+                                         password
+                                         password_confirmation]
 
       # POST /users
       # Create a user (sign up).
@@ -15,6 +19,7 @@ module Api
 
       private
 
+      # Sanitize the user params.
       def user_params
         permitted_params =
           %i[email first_name last_name password password_confirmation]
