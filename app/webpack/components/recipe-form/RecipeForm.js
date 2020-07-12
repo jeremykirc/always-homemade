@@ -4,26 +4,10 @@ import { Button, Col, Form } from 'react-bootstrap';
 
 import { createRecipe } from '../../api/v1/recipes';
 import RecipeImageCropper from './RecipeImageCropper';
-import RecipeInstructionInput from './RecipeInstructionInput';
+import RecipeInstructions from './RecipeInstructions';
 import RecipePhotoUploader from './RecipePhotoUploader';
 
 const RecipeForm = ({ history }) => {
-  const handleInputChange = (e) => {
-    if (e.target.getAttribute('name') == 'instruction') {
-      let instructions = formData.instructions;
-      let index = e.target.getAttribute('data-index');
-      instructions[index] = e.target.value;
-      setFormData({...formData, instructions: instructions });
-    } else {
-      setFormData({...formData, [e.target.name]: e.target.value });
-    }
-  };
-
-  const addInstructionInput = () => {
-    let instructions = formData.instructions;
-    setFormData({...formData, instructions: [...instructions, ''] });
-  };
-
   const [imageSource, setImageSource] = useState(null);
   const [croppedImageBlob, setCroppedImageBlob] = useState();
   const [formData, setFormData] = useState({
@@ -33,6 +17,26 @@ const RecipeForm = ({ history }) => {
     instructions: [''],
     image: ''
   });
+
+  const handleInputChange = ({ target: { name: field, value } }) => {
+    setFormData((currentData) => ({ ...currentData, [field]: value }));
+  };
+
+  const addNewInstruction = () => {
+    setFormData((currentData) => ({
+      ...currentData,
+      instructions: currentData.instructions.concat(''),
+    }));
+  };
+
+  const updateInstruction = (index, newValue) => {
+    setFormData((currentData) => ({
+      ...currentData,
+      instructions: currentData.instructions.map((value, i) => (
+        index === i ? newValue : value
+      )),
+    }));
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -90,20 +94,11 @@ const RecipeForm = ({ history }) => {
             </Form.Group>
             <Form.Group as={Col} xs='12' controlId='instructions'>
               <Form.Label>Instructions</Form.Label>
-              <ol>
-                {
-                  formData.instructions.map((value, index) => {
-                    return (
-                      <RecipeInstructionInput
-                        key={index}
-                        index={index}
-                        value={value}
-                        onChange={handleInputChange} />
-                    );
-                  })
-                }
-              </ol>
-              <i className='fas fa-plus-square add-btn' tabIndex='0' onClick={addInstructionInput}></i>
+              <RecipeInstructions
+                addNewInstruction={addNewInstruction}
+                instructions={formData.instructions}
+                updateInstruction={updateInstruction}
+              />
             </Form.Group>
             <Form.Group as={Col} xs='12' controlId='photo'>
               <Form.Label>Photo</Form.Label>
