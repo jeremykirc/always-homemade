@@ -4,6 +4,7 @@ import { Button, Col, Form } from 'react-bootstrap';
 
 import { createRecipe } from '../../api/v1/recipes';
 import RecipeImageCropper from './RecipeImageCropper';
+import RecipeIngredients from './RecipeIngredients';
 import RecipeInstructions from './RecipeInstructions';
 import RecipePhotoUploader from './RecipePhotoUploader';
 
@@ -14,8 +15,8 @@ const RecipeForm = ({ history }) => {
     title: '',
     description: '',
     link: '',
+    ingredients: [],
     instructions: [''],
-    image: ''
   });
 
   const handleInputChange = ({ target: { name: field, value } }) => {
@@ -38,18 +39,48 @@ const RecipeForm = ({ history }) => {
     }));
   };
 
+  const addNewIngredient = () => {
+    setFormData((currentData) => ({
+      ...currentData,
+      ingredients: currentData.ingredients.concat({
+        name: '',
+        quantity: 1,
+        unit: '',
+      }),
+    }));
+  };
+
+  const removeIngredient = (index) => {
+    setFormData((currentData) => ({
+      ...currentData,
+      ingredients: currentData.ingredients.filter((value, i) => index !== i),
+    }));
+  };
+
+  const updateIngredient = (index, newValue) => {
+    setFormData((currentData) => ({
+      ...currentData,
+      ingredients: currentData.ingredients.map((value, i) => (
+        index === i ? newValue : value
+      )),
+    }));
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     const data = new FormData();
     for (const key in formData) {
-      if (key == 'instructions') {
+      if (['instructions', 'ingredients'].includes(key)) {
         data.append(key, JSON.stringify(formData[key]));
       } else {
         data.append(key, formData[key]);
       }
     }
-    data.append('image', croppedImageBlob);
+
+    if (croppedImageBlob) {
+      data.append('image', croppedImageBlob);
+    }
 
     createRecipe(data)
       .then(() => {
@@ -91,6 +122,15 @@ const RecipeForm = ({ history }) => {
                 value={formData.link}
                  onChange={handleInputChange}>
               </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col} xs='12' controlId='instructions'>
+              <Form.Label>Ingredients</Form.Label>
+              <RecipeIngredients
+                addNewIngredient={addNewIngredient}
+                ingredients={formData.ingredients}
+                removeIngredient={removeIngredient}
+                updateIngredient={updateIngredient}
+              />
             </Form.Group>
             <Form.Group as={Col} xs='12' controlId='instructions'>
               <Form.Label>Instructions</Form.Label>
