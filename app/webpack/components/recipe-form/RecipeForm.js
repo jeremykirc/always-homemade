@@ -5,6 +5,7 @@ import { Button, Col, Form } from 'react-bootstrap';
 import { createRecipe } from '../../api/v1/recipes';
 import RecipeImageCropper from './RecipeImageCropper';
 import RecipeInstructionInput from './RecipeInstructionInput';
+import RecipePhotoUploader from './RecipePhotoUploader';
 
 const RecipeForm = ({ history }) => {
   const handleInputChange = (e) => {
@@ -53,15 +54,6 @@ const RecipeForm = ({ history }) => {
       .catch(error => {
         console.error(error);
       });
-  };
-
-  // Set the src state when the user selects a file.
-  const onSelectFile = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const reader = new FileReader();
-      reader.addEventListener('load', () => setImageSource(reader.result));
-      reader.readAsDataURL(e.target.files[0]);
-    }
   };
 
   return (
@@ -115,11 +107,7 @@ const RecipeForm = ({ history }) => {
             </Form.Group>
             <Form.Group as={Col} xs='12' controlId='photo'>
               <Form.Label>Photo</Form.Label>
-              <input
-                type='file'
-                accept='image/*'
-                onChange={onSelectFile}
-              />
+              <RecipePhotoUploader setImageSource={setImageSource} />
             </Form.Group>
           </Form.Row>
         </Col>
