@@ -1,15 +1,21 @@
 // Vendor
 @import 'bootstrap/scss/bootstrap';
 @import 'react-image-crop/dist/ReactCrop.css';
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
 
 // Shared
-@import 'colors.scss';
-@import 'fonts.scss';
-@import 'mixins.scss';
+@import 'color.scss';
+@import 'font.scss';
+@import 'mixin.scss';
 
 // Custom
-@import 'forms.scss';
+@import 'button.scss';
+@import 'form.scss';
 @import 'header.scss';
 @import 'image_cropper.scss';
-@import 'image_grid.scss';
 @import 'layout.scss';
+@import 'preloader.scss';
+@import 'recipe_grid.scss';

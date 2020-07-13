@@ -1,0 +1,7 @@
+users:
+  jeremykirc:
+    email: 'jeremykirc@gmail.com'
+    first_name: 'Jeremy'
+    last_name: 'Kirchhoff'
+    password: 'abc123'
+    password_confirmation: 'abc123'

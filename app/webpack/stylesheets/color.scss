@@ -1,8 +1,15 @@
 $white:             rgb(255, 255, 255);
 $white-transparent: rgba(255, 255, 255, 0.7);
+$gray-extra-light:  rgb(245, 245, 245);
+$gray-light:        rgb(222, 217, 214);
+$gray:              rgb(123, 116, 111);
+$gray-dark:         rgb(82, 78, 73);
+$gray-extra-dark:   rgb(48, 46, 44);
+$ink:               $gray-extra-dark; 
 $primary:           rgb(228, 162, 74);
 $primary-dark:      rgb(224, 137, 39);
 $success:           rgb(160, 160, 139);
 $success-dark:      rgb(134, 134, 110);
 $danger:            rgb(211, 114, 94);
 $danger-dark:       rgb(191, 93, 73);
+$shadow:            rgba(32, 30, 29, 0.20);

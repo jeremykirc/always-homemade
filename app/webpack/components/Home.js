@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ImageGrid from './ImageGrid';
+import RecipeGrid from './RecipeGrid';
 
 const Home = () => {
   return (
-    <ImageGrid />
+    <RecipeGrid />
   );
 };
 
