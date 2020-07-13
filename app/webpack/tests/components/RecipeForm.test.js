@@ -16,14 +16,14 @@ describe('RecipeForm', () => {
   });
 
   it('should submit RecipeForm and indicate error', async () => {
-    axios.post.mockReturnValue(Promise.reject('error message'));
+    axios.post.mockReturnValue(Promise.reject('test error message'));
     wrapper.find('Form').simulate('submit', {
       preventDefault: () => {}
     });
     await flushPromises();
 
     // TODO Confirm error is indicated.
-  }); 
+  });
 
   it('should submit RecipeForm and redirect to root path on success', async () => {
     axios.post.mockReturnValue(Promise.resolve());
@@ -33,5 +33,5 @@ describe('RecipeForm', () => {
     await flushPromises();
 
     expect(history.push).toHaveBeenLastCalledWith('/');
-  }); 
+  });
 });

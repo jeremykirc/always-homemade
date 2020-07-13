@@ -1,4 +1,5 @@
 import selectRecipes from '../../selectors/recipes';
+import users from '../fixtures/users';
 import recipes from '../fixtures/recipes';
 
 describe('selectRecipes', () => {
@@ -7,7 +8,7 @@ describe('selectRecipes', () => {
       text: 'FoO',
       group: ''
     };
-    const result = selectRecipes(recipes, filters);
+    const result = selectRecipes(recipes, filters, users[0]);
     expect(result).toEqual([recipes[0], recipes[2]])
   });
 
@@ -16,7 +17,7 @@ describe('selectRecipes', () => {
       text: '',
       group: 'OWN'
     };
-    const result = selectRecipes(recipes, filters);
+    const result = selectRecipes(recipes, filters, users[0]);
     expect(result).toEqual([])
   });
 
@@ -25,7 +26,7 @@ describe('selectRecipes', () => {
       text: '',
       group: 'FAVORITES'
     };
-    const result = selectRecipes(recipes, filters);
+    const result = selectRecipes(recipes, filters, users[0]);
     expect(result).toEqual([])
   });
 
@@ -34,7 +35,7 @@ describe('selectRecipes', () => {
       text: 'foo',
       group: 'FAVORITES'
     };
-    const result = selectRecipes(recipes, filters);
+    const result = selectRecipes(recipes, filters, users[0]);
     expect(result).toEqual([])
   });
 });
