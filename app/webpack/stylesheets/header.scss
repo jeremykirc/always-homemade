@@ -2,13 +2,14 @@
   margin: 15px 8px;
   float: left;
   img {
-    height: 40px;
+    height: 30px;
   }
 }
 
 .navbar {
   background-color: $white;
-  padding: 8px 0px;
+  padding: 0px;
+  margin-bottom: 20px;
   .navbar-nav {
     float: none;
     margin-left: auto;
@@ -19,6 +20,18 @@
     letter-spacing: 1px;
     .nav-link {
       text-transform: uppercase;
+      margin: 25px 8px 0px;
+      padding: 0px 0px 14px;
+      &:hover, &:focus, &:active, &:active:hover, &:active:focus, &.active {
+        outline: none !important;
+        font-weight: bold;
+        border-bottom: 4px solid $primary;
+      }
+      @media (max-width: 767px) {
+        margin: 8px auto;
+        padding-bottom: 4px;
+        width: fit-content;
+      }
     }
     .dropdown-menu {
       padding: 0px;

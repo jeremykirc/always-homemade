@@ -16,14 +16,11 @@ const Header = () => (
       </button>
       <div className='collapse navbar-collapse' id='navbarNavDropdown'>
         <ul className='navbar-nav'>
-          <li className='nav-item dropdown'>
-            <a className='nav-link dropdown-toggle' href='/#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-              Dropdown
-            </a>
-            <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-              <NavLink to='/' exact className='dropdown-item'>Home</NavLink>
-              <NavLink to='/images/new' className='dropdown-item'>Upload Image</NavLink>
-            </div>
+          <li className='nav-item'>
+            <NavLink to='/' exact className='nav-link'>Feed Me</NavLink>
+          </li>
+          <li className='nav-item'>
+            <NavLink to='/images/new' className='nav-link'>Add Recipe</NavLink>
           </li>
           <li className='nav-item'>
             <NavLink to='/sign_in' className='nav-link'>Sign in</NavLink>
