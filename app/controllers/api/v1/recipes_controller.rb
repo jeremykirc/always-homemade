@@ -15,7 +15,7 @@ module Api
         )
         recipe.image.attach(params[:image]) if params[:image].present?
         recipe.save!
-        render json: nil, status: :ok
+        render json: nil, status: :created
       rescue ActiveRecord::RecordInvalid => e
         render json: e.message, status: :internal_server_error
       end

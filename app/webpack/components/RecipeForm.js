@@ -167,7 +167,7 @@ const RecipeForm = ({ history }) => {
           <Button variant='primary' type='submit'>Submit</Button>
         </Col>
       </Form.Row>
-      </Form>
+    </Form>
   );
 };
 
