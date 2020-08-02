@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Home from '../components/Home';
-import RecipeForm from '../components/RecipeForm';
+import RecipeForm from '../components/recipe-form/RecipeForm';
 import NotFound from '../components/NotFound';
 import SignUp from '../components/SignUp';
 import Login from '../components/Login';

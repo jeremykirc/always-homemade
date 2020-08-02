@@ -13,7 +13,18 @@ module Api
           instructions: JSON.parse(params[:instructions]),
           user: current_user
         )
+
         recipe.image.attach(params[:image]) if params[:image].present?
+
+        JSON.parse(params[:ingredients]).each do |ingredient_data|
+          ingredient = Ingredient.find_or_create_by!(name: ingredient_data['name'].downcase.strip)
+          recipe.ingredient_quantities << IngredientQuantity.new(
+            ingredient: ingredient,
+            quantity: ingredient_data['quantity'],
+            unit: ingredient_data['unit'].downcase.strip
+          )
+        end
+
         recipe.save!
         render json: nil, status: :created
       rescue ActiveRecord::RecordInvalid => e
